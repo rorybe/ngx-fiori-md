@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { TranslateService } from './services/translate.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'ng-fiori-md';
+
+  constructor(private translate: TranslateService) {
+    translate.use('en');
+  }
 }
+

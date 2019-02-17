@@ -1,0 +1,11 @@
+{
+    "dueOn": "Due on",
+    "createdOn": "Created on",
+    "comments": "Comments",
+    "commentEnter": "Enter a comment",
+    "attachments": "Attachments",
+    "resourceNotFound": "Sorry, but the requested resource is not available.",
+    "search": "Search",
+    "allItems": "All Items",
+    "onBehalf": "On Behalf of"
+}

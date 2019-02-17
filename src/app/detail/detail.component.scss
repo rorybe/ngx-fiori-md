@@ -1,0 +1,78 @@
+:host {
+    display: flex;
+    overflow: hidden;
+}
+
+.content {
+    flex-grow: 1;
+    padding-bottom: 2rem;
+    width: 100vh;
+}
+
+fd-panel {
+    background-color: #eff4f9;
+}
+
+.sapMOHAttrRow {
+    margin-top: 0.625rem;
+    overflow: hidden;
+    display: block;
+}
+
+.sapMOHBottomRow {
+    margin-top: 1rem;
+}
+
+.fd-action-bar__header {
+    padding: 16px 24px;
+    width: initial
+}
+
+.fd-action-bar__actions {
+    padding-right: 24px;
+}
+
+::ng-deep app-detail .fd-panel__footer {
+    width: calc(100% - 320px);
+    right: 0;
+}  
+
+::ng-deep fd-panel>div {
+    height: 100%;
+}
+
+::ng-deep app-detail>.fd-panel>div>fd-panel-body {
+    display: block;
+    position: absolute;
+    height: calc(100% - 10rem);
+    overflow-y: scroll;
+    right: 0;
+    left: 320px;
+}    
+
+fd-tile {
+    background-color: #ceddec;
+    margin-bottom: 1rem;
+}
+
+fd-tile-media>img {
+    height: 4rem;
+} 
+
+::ng-deep fd-action-bar-actions .fd-inline-help__content {
+	min-width: initial;
+}
+
+.tileReadOnly {
+    flex-direction: row-reverse;
+    .fd-tile__media {
+        padding: 10px 16px 10px 0;
+    }
+}
+
+::ng-deep .fd-tabs a {
+    text-decoration: none;
+}
+
+
+

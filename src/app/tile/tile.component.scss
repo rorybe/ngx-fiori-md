@@ -1,0 +1,35 @@
+.sapMObjLBottomRow {
+    margin-top: .25rem;
+}
+
+fd-tile {
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.sapMLIBSelected, [ng-reflect-ng-class='sapMLIBSelected'] {
+    background: #e8eff6;
+}
+
+.sapMObjLStatusDiv {
+    box-sizing: border-box;
+    display: inline-block;
+    text-align: right;
+    vertical-align: top;
+    float: right;
+}
+
+.sapMObjLAttrDiv {
+    box-sizing: border-box;
+    display: inline-block;
+    min-width: 50%;
+    flex: 1;
+    text-align: left;
+    vertical-align: top;
+}
+
+.sapMObjLAttrRow .sapMObjStatus {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    width: 100%;
+}

@@ -1,0 +1,11 @@
+{
+    "dueOn": "期限日",
+    "createdOn": "制作日",
+    "comments": "ご感想",
+    "commentEnter": "コメント入力(ご意見を入力)",
+    "attachments": "添付",
+    "resourceNotFound": "申し訳ありません、只今このサービスは準備中です.",
+    "search": "検索",
+    "allItems": "全てのアイテム",
+    "onBehalf": "代理"
+}

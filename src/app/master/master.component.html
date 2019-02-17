@@ -1,0 +1,63 @@
+<fd-panel class="sapMSplitContainerMaster">
+    <fd-panel-filters class="masterPanelFilter">
+        <div class="barMiddle">
+            <!-- <ng-container i18n="@@allItems">All Items</ng-container> -->
+            {{(translate.i18n)?.allItems}}
+            <span> ({{(taskListSearchResults)?.length}})</span>
+        </div>
+        <div class="barRight">
+            <button fd-button [fdType]="'toolbar'" [glyph]="'multiselect'"></button>
+        </div>
+        <fd-search-input [searchFunction]="" [compact]="true" [(ngModel)]="searchTerm"
+            (ngModelChange)="onSearchModelChange(searchTerm)" [dropdownValues]="dropdownValues">
+        </fd-search-input>
+    </fd-panel-filters>
+    <fd-panel-body class="masterPanelBody">
+        <fd-side-nav>
+            <fd-loading-spinner [loading]="loading"></fd-loading-spinner>
+            <fd-side-nav-list *ngIf="!loading">
+                <app-tile [taskListSearchResults]="taskListSearchResults"></app-tile>
+                <!-- <fd-tile *ngFor="let task of taskListSearchResults" [isButton]="true"
+                     id="tile{{task.id}}">
+                    <fd-tile-content>
+                        <fd-tile-title>
+                            {{ task.taskTitle }}
+                        </fd-tile-title>
+                        <div class="sapMObjLBottomRow">
+                            <div class="sapMObjLAttrRow">
+                                <div class="sapMObjLAttrDiv">
+                                    <div class="sapMObjectAttributeDiv">
+                                        <p>{{ task.createdByName }}</p>
+                                    </div>
+                                    <div class="sapMObjectAttributeDiv">
+                                        <p>{{(translate.i18n)?.dueOn}} {{task.completionDeadLine.seconds * 1000 | date:'medium'}}</p>
+                                    </div>
+                                    <div class="sapMObjectAttributeDiv">
+                                        <p>{{(translate.i18n)?.onBehalf}} {{ task.user }}</p>
+                                    </div>
+                                </div>
+                                <div class="sapMObjLStatusDiv">
+                                    <div class="sapMObjStatus">
+                                        <span dir="ltr" class="sapMObjStatusText">
+                                            {{ task.priority }}
+                                        </span>
+                                    </div>
+                                    <div class="sapMObjStatus">
+                                        <span dir="ltr" class="sapMObjStatusText">
+                                            Overdue
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </fd-tile-content>
+                </fd-tile> -->
+            </fd-side-nav-list>
+        </fd-side-nav>
+    </fd-panel-body>
+    <fd-panel-footer>
+        <button class="fd-button--shell sap-icon--sort"></button>
+        <button class="fd-button--shell sap-icon--filter"></button>
+        <button class="fd-button--shell sap-icon--group-2"></button>
+    </fd-panel-footer>
+</fd-panel>

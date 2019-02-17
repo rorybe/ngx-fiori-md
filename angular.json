@@ -27,7 +27,8 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              "./node_modules/fiori-fundamentals/dist/fiori-fundamentals.css"
             ],
             "scripts": [],
             "es5BrowserSupport": true
@@ -56,6 +57,15 @@
                   "maximumError": "5mb"
                 }
               ]
+            },
+            "ja": {
+              "aot": true,
+              "outputPath": "dist/ng-fiori-md/",
+              "baseHref": "/jp/",
+              "i18nFile": "src/locale/messages.ja.xlf",
+              "i18nFormat": "xlf",
+              "i18nLocale": "ja",
+              "i18nMissingTranslation": "error"
             }
           }
         },
@@ -67,6 +77,9 @@
           "configurations": {
             "production": {
               "browserTarget": "ng-fiori-md:build:production"
+            },
+            "ja": {
+              "browserTarget": "ng-fiori-md:build:ja"
             }
           }
         },
