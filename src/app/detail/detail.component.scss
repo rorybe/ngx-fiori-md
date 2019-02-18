@@ -50,24 +50,8 @@ fd-panel {
     left: 320px;
 }    
 
-fd-tile {
-    background-color: #ceddec;
-    margin-bottom: 1rem;
-}
-
-fd-tile-media>img {
-    height: 4rem;
-} 
-
 ::ng-deep fd-action-bar-actions .fd-inline-help__content {
 	min-width: initial;
-}
-
-.tileReadOnly {
-    flex-direction: row-reverse;
-    .fd-tile__media {
-        padding: 10px 16px 10px 0;
-    }
 }
 
 ::ng-deep .fd-tabs a {

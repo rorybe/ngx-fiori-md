@@ -7,10 +7,13 @@ import { TranslateService } from '../services/translate.service';
     styleUrls: ['./pagenotfound.component.scss']
 })
 export class PageNotFoundComponent implements OnInit {
-    translate: TranslateService;
-    constructor(translate: TranslateService) { }
+
+    constructor(private translate: TranslateService) { }
 
     ngOnInit() {
     }
 
+    get translatedTexts() {
+        return this.translate.i18n;
+    }
 }

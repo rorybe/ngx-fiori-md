@@ -1,0 +1,15 @@
+fd-tile-media>img {
+    height: 4rem;
+} 
+
+.tileReadOnly {
+    flex-direction: row-reverse;
+    .fd-tile__media {
+        padding: 10px 16px 10px 0;
+    }
+}
+
+fd-tile {
+    background-color: #ceddec;
+    margin-bottom: 1rem;
+}

@@ -19,14 +19,14 @@
                         </fd-action-bar-description>
                         <fd-action-bar-description class="sapMOHAttrRow">
                             <!-- <ng-container i18n="@@dueOn">Due on</ng-container> -->
-                            <span>{{(translate.i18n)?.dueOn}} </span>
+                            <span>{{translatedTexts?.dueOn}} </span>
                             <span>
                                 {{(task | async)?.completionDeadLine.seconds * 1000 | date:'medium'}}
                             </span>
                         </fd-action-bar-description>
                         <fd-action-bar-description class="sapMOHAttrRow">
                             <!-- <ng-container i18n="@@createdOn">Created on</ng-container> -->
-                            <span>{{(translate.i18n)?.createdOn}} </span>
+                            <span>{{translatedTexts?.createdOn}} </span>
                             {{(task | async)?.createdOn.seconds * 1000 | date:'medium'}}
                         </fd-action-bar-description>
                     </div>
@@ -41,85 +41,13 @@
         </fd-action-bar>
         <fd-tab-list *ngIf="!loading">
             <fd-tab [title]="'Information'">
-                <fd-panel>
-                    <fd-panel-body class="detailTabBody">
-                        <div style="display: flex;">
-                            <div style="display: grid;">
-                                <span>Property Key 1</span>
-                                <span>Property Key 2</span>
-                                <span>Property Key 3</span>
-                                <span>Property Key 4</span>
-                                <span>Property Key sdfasdfasfasdfasfdasfdas</span>
-                                <span>Property Key 5</span>
-                                <span>Property Key 6</span>
-                                <span>Property Key 7</span>
-                                <span>Property Key 8</span>
-                                <span>Property Key 9</span>
-                                <span>Property Key 10</span>
-                                <span>Property Key 11</span>
-                                <span>Property Key 12</span>
-                                <span>Property Key 13</span>
-                                <span>Property Key 14</span>
-                                <span>Property Key 15</span>
-                                <span>Property Key 16</span>
-                            </div>
-                            <div style="display: grid;">
-                                <span>Property Value 1 asdfasdfasdfasdfasdf</span>
-                                <span>Property Value 2</span>
-                                <span>Property Value 3</span>
-                                <span>Property Value 4</span>
-                                <span>Property Value sdfasdfasfasdfasfdasfdas</span>
-                                <span>Property Value 5</span>
-                                <span>Property Value 6</span>
-                                <span>Property Value 7</span>
-                                <span>Property Value 8</span>
-                                <span>Property Value 9</span>
-                                <span>Property Value 10</span>
-                                <span>Property Value 11</span>
-                                <span>Property Value 12</span>
-                                <span>Property Value 13</span>
-                                <span>Property Value 14</span>
-                                <span>Property Value 15</span>
-                                <span>Property Value 16</span>
-                            </div>
-                        </div>
-                    </fd-panel-body>
-                </fd-panel>
+                <app-info></app-info>
             </fd-tab>
             <fd-tab i18n-title="@@comments" [title]="'Comments'">
-                <fd-panel>
-                    <fd-panel-body class="detailTabBody">
-                        <fd-tile class="tileReadOnly">
-                            <fd-tile-content>
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nulla facere vero voluptates facilis in dolores porro sed perferendis dolorum laudantium? Unde laudantium non animi suscipit nisi fugit, harum esse quod.
-                            </fd-tile-content>
-                            <fd-tile-media>
-                                <img src="./assets/images/headshot-female.png" alt="">
-                            </fd-tile-media>
-                        </fd-tile>
-                        <fd-tile>
-                            <fd-tile-media>
-                                <img src="./assets/images/headshot-male.jpg" alt="">
-                            </fd-tile-media>
-                            <fd-tile-content>
-                                <div fd-form-group>
-                                    <div fd-form-item>
-                                        <fd-input-group i18n-placeholder="@@commentEnter" [button]="true" [placement]="'after'" [addOnText]="'Submit'"
-                                            [placeholder]="'Enter a comment'" [glyph]="'feeder-arrow'">
-                                        </fd-input-group>
-                                    </div>
-                                </div>
-                            </fd-tile-content>
-                        </fd-tile>
-                    </fd-panel-body>
-                </fd-panel>
+                <app-comments></app-comments>
             </fd-tab>
             <fd-tab i18n-title="@@attachments" [title]="'Attachments'">
-                <fd-panel>
-                    <fd-panel-body class="detailTabBody">
-                        Attachments
-                    </fd-panel-body>
-                </fd-panel>
+                <app-attachments></app-attachments>
             </fd-tab>
         </fd-tab-list>
     </fd-panel-body>
