@@ -7,5 +7,8 @@
     "resourceNotFound": "Sorry, but the requested resource is not available.",
     "search": "Search",
     "allItems": "All Items",
-    "onBehalf": "On Behalf of"
+    "onBehalf": "On Behalf of",
+    "company": "Company A",
+    "portal": "Corporate Portal",
+    "info": "Information"
 }

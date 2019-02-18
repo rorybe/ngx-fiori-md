@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TranslateService } from '../services/translate.service';
 
 @Component({
   selector: 'app-comments',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CommentsComponent implements OnInit {
 
-  constructor() { }
+  constructor(private translate: TranslateService) { }
 
   ngOnInit() {
+  }
+
+  get translatedTexts() {
+    return this.translate.i18n;
   }
 
 }

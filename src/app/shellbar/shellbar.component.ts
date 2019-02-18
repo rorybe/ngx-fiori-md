@@ -14,9 +14,11 @@ export class ShellbarComponent {
         private taskService: TaskService) {
     }
 
-    taskList$ = this.taskService.taskList$;
+    get translatedTexts() {
+        return this.translate.i18n;
+    }
 
-    productMenuControl = 'Corporate Portal';
+    taskList$ = this.taskService.taskList$;
 
     productMenuItems = [
         { name: 'Fiori Fundamentals Worklist App', callback: () => { alert('Application A Clicked'); } },

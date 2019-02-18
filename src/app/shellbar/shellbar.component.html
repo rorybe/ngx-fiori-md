@@ -2,10 +2,10 @@
     <fd-shellbar-logo>
         <a href="#" class="fd-shellbar__logo fd-shellbar__logo--image-replaced" aria-label="SAP"></a>
     </fd-shellbar-logo>
-    <fd-product-menu [control]="productMenuControl" [items]="productMenuItems">
+    <fd-product-menu [control]="translatedTexts?.portal" [items]="productMenuItems">
     </fd-product-menu>
     <fd-shellbar-subtitle>
-        Company A
+        {{translatedTexts?.company}}
     </fd-shellbar-subtitle>
     <fd-copilot>
     </fd-copilot>
