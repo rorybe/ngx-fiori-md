@@ -33,20 +33,20 @@
                 </fd-action-bar-description>
             </fd-action-bar-header>
             <fd-action-bar-actions>
-                <span>{{ (task | async)?.user }}  </span>
+                <span>{{ (task | async)?.user }} </span>
                 <fd-inline-help [position]="'bottom-left'">
                     <fd-label [isStatusLabel]="true" [statusIcon]="'busy'">Busy</fd-label>
                 </fd-inline-help>
             </fd-action-bar-actions>
         </fd-action-bar>
         <fd-tab-list *ngIf="!loading">
-            <fd-tab [title]="'Information'">
+            <fd-tab [title]="translatedTexts?.info">
                 <app-info></app-info>
             </fd-tab>
-            <fd-tab i18n-title="@@comments" [title]="'Comments'">
+            <fd-tab i18n-title="@@comments" [title]="translatedTexts?.comments">
                 <app-comments></app-comments>
             </fd-tab>
-            <fd-tab i18n-title="@@attachments" [title]="'Attachments'">
+            <fd-tab i18n-title="@@attachments" [title]="translatedTexts?.attachments">
                 <app-attachments></app-attachments>
             </fd-tab>
         </fd-tab-list>
