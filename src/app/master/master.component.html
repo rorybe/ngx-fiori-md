@@ -9,15 +9,15 @@
             <button fd-button [fdType]="'toolbar'" [glyph]="'multiselect'"></button>
         </div>
         <fd-search-input [searchFunction]="" [compact]="true" [(ngModel)]="searchTerm"
-            (ngModelChange)="onSearchModelChange(searchTerm)" [dropdownValues]="dropdownValues">
+            (ngModelChange)="onSearchModelChange()" [dropdownValues]="[]">
         </fd-search-input>
     </fd-panel-filters>
     <fd-panel-body class="masterPanelBody">
         <fd-side-nav>
             <fd-loading-spinner *ngIf="loading$ | async" [loading]="true"></fd-loading-spinner>
-            <ng-container *ngIf="taskList$ | async as taskList">
+            <ng-container *ngIf="taskList$ | async">
                 <fd-side-nav-list>
-                    <app-tile [taskListSearchResults]="taskList"></app-tile>
+                    <app-tile [taskListSearchResults]="taskListSearchResults"></app-tile>
                 </fd-side-nav-list>
             </ng-container>
         </fd-side-nav>

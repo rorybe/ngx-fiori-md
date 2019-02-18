@@ -1,9 +1,7 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
 import { TaskService } from '../services/task.service';
-import { AngularFirestore } from 'angularfire2/firestore';
 import { TranslateService } from '../services/translate.service';
-import { map, tap } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 import { BehaviorSubject } from 'rxjs';
 
 @Component({
@@ -17,14 +15,6 @@ export class MasterComponent implements OnInit {
 
   loading$ = new BehaviorSubject<boolean>(true);
   searchTerm = '';
-  selectedElement;
-  selectedId: string;
-
-  dropdownValues = [
-    // {text: 'Apple', callback: () => alert('Apple Clicked')}
-  ];
-
-  // taskList$: Observable<any[]>;
   taskList: any[];
   taskListSearchResults: any[] = [];
 
@@ -38,24 +28,15 @@ export class MasterComponent implements OnInit {
   }));
 
   constructor(
-    private route: ActivatedRoute,
-    private router: Router,
-    private db: AngularFirestore,
     private taskService: TaskService,
     private translate: TranslateService
   ) { }
 
-  ngOnInit() {
-    // this.taskList$ = this.task.taskList;
-    // this.taskList$.subscribe(tasks => {
-    //   this.taskListSearchResults = this.taskList = tasks;
-    //   this.loading = false;
-    // });
-  }
+  ngOnInit() { }
 
-  onSearchModelChange(d) {
+  onSearchModelChange() {
     this.taskListSearchResults = this.taskList.filter(task =>
-      task.taskTitle.toLowerCase().includes(d.toLowerCase())
+      task.taskTitle.toLowerCase().includes(this.searchTerm.toLowerCase())
     );
   }
 
