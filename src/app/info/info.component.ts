@@ -7,6 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class InfoComponent implements OnInit {
 
+  column1SortDir;
+  dateSortDir;
+  tableRows;
+  sortColumn1;
+  sortDate;
+
   constructor() { }
 
   ngOnInit() {
