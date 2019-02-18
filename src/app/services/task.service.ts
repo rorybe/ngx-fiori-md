@@ -3,25 +3,27 @@ import {
     AngularFirestore,
     AngularFirestoreCollection
 } from 'angularfire2/firestore';
-import { BehaviorSubject } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { map, tap } from 'rxjs/operators';
 
 @Injectable()
 export class TaskService {
-    taskList$: AngularFirestoreCollection<any>;
+    // tL$: AngularFirestoreCollection<any>;
     currentTask = new BehaviorSubject<any>(null);
+
     constructor(private db: AngularFirestore) {
-        this.taskList$ = db.collection('taskheaders');
+        // this.taskList$ = db.collection('taskheaders');
     }
 
-    get taskList() {
-        return this.taskList$
+    get taskList$() {
+        const taskList = this.db.collection('taskheaders')
             .snapshotChanges()
             .pipe(map(actions => actions.map(a => {
                 const data = a.payload.doc.data();
                 const id = a.payload.doc.id;
-                return {...data, id};
+                return { ...data, id };
             })));
+        return taskList;
     }
 
     get selectedTask() {

@@ -18,6 +18,9 @@ import { TranslateService } from './services/translate.service';
 import { TileComponent } from './tile/tile.component';
 import { TaskduecolourPipe } from './pipes/taskduecolour.pipe';
 import { TaskpriorityPipe } from './pipes/taskpriority.pipe';
+import { CommentsComponent } from './comments/comments.component';
+import { AttachmentsComponent } from './attachments/attachments.component';
+import { InfoComponent } from './info/info.component';
 
 export const firebaseConfig = environment.firebase;
 

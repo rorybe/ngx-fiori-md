@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '../services/translate.service';
+import { TaskService } from '../services/task.service';
 
 @Component({
     selector: 'app-shellbar',
@@ -8,8 +9,12 @@ import { TranslateService } from '../services/translate.service';
 })
 export class ShellbarComponent {
 
-    constructor(private translate: TranslateService) {
+    constructor(
+        private translate: TranslateService,
+        private taskService: TaskService) {
     }
+
+    taskList$ = this.taskService.taskList$;
 
     productMenuControl = 'Corporate Portal';
 
@@ -32,12 +37,11 @@ export class ShellbarComponent {
 
     actions = [
         {
-            glyph: 'bell', callback: this.actionNotificationCallback, label: 'Notifications',
-            notificationCount: 12, notificationLabel: 'Unread Notifications'
-        },
-        {
-            glyph: 'pool', callback: this.actionPoolCallback, label: 'Pool',
-            notificationCount: 3, notificationLabel: 'Pool Count'
+            glyph: 'bell',
+            callback: this.actionNotificationCallback,
+            label: 'Notifications',
+            notificationCount: 12,
+            notificationLabel: 'Unread Notifications'
         }
     ];
 
@@ -119,10 +123,6 @@ export class ShellbarComponent {
 
     actionNotificationCallback($event) {
         alert('Notification Action Clicked');
-    }
-
-    actionPoolCallback($event) {
-        alert('Pool Action Clicked');
     }
 
     productSwitcherCallback($event, product) {

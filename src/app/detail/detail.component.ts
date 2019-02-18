@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute, ParamMap } from '@angular/router';
-import { switchMap } from 'rxjs/operators';
+import { Router, ActivatedRoute } from '@angular/router';
 import { TaskService } from '../services/task.service';
 import { AngularFirestoreDocument, AngularFirestore } from 'angularfire2/firestore';
 import { Observable } from 'rxjs';
@@ -29,5 +28,9 @@ export class DetailComponent implements OnInit {
       this.task = this.afs.doc(`taskheaders/${params.taskId}`).valueChanges();
       this.loading = false;
     });
+  }
+
+  get translatedTexts() {
+    return this.translate.i18n;
   }
 }

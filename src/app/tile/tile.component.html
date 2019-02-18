@@ -11,10 +11,10 @@
             <p>{{ task.createdByName }}</p>
           </div>
           <div class="sapMObjectAttributeDiv">
-            <p>{{(translate.i18n)?.dueOn}} {{task.completionDeadLine.seconds * 1000 | date:'medium'}}</p>
+            <p>{{translatedTexts?.dueOn}} {{task.completionDeadLine.seconds * 1000 | date:'medium'}}</p>
           </div>
           <div class="sapMObjectAttributeDiv">
-            <p>{{(translate.i18n)?.onBehalf}} {{ task.user }}</p>
+            <p>{{translatedTexts?.onBehalf}} {{ task.user }}</p>
           </div>
         </div>
         <div class="sapMObjLStatusDiv">

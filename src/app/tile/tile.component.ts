@@ -32,4 +32,8 @@ export class TileComponent implements OnInit {
     // });
   }
 
+  get translatedTexts() {
+    return this.translate.i18n;
+  }
+
 }
