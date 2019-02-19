@@ -35,13 +35,6 @@ export class MasterComponent implements OnInit {
     private translate: TranslateService
   ) { }
 
-  ngOnInit() {
-    this.taskList$.subscribe(
-      result => window.console.log(result),
-      err => window.console.log(err)
-    );
-  }
-
   onSearchModelChange() {
     this.taskListSearchResults = this.taskList.filter(task =>
       task.taskTitle.toLowerCase().includes(this.searchTerm.toLowerCase())
@@ -52,14 +45,15 @@ export class MasterComponent implements OnInit {
     return this.translate.i18n;
   }
 
-  onSort() {
+  onSort(): boolean {
     if (!this.sorted) {
       this.taskListSearchResults = this.taskList.sort((a, b) =>
-        a.completionDeadLine.milliseconds -
-        b.completionDeadLine.milliseconds
+        b.completionDeadLine.milliseconds -
+        a.completionDeadLine.milliseconds
       );
       return this.sorted = true;
     }
-    this.taskListSearchResults = this.taskList.reverse();
+
+    return false;
   }
 }
