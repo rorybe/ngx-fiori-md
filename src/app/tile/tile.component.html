@@ -19,12 +19,12 @@
         </div>
         <div class="sapMObjLStatusDiv">
           <div class="sapMObjStatus">
-            <span dir="ltr" [ngStyle]="{color: task.priority | taskpriority}">
+            <span [appTaskprioritycolour]="task.priority" dir="ltr">
               {{ task.priority }}
             </span>
           </div>
           <div class="sapMObjStatus">
-            <span dir="ltr" [ngStyle]="{color: (task.completionDeadLine)?.seconds * 1000 | taskduetext:now | taskduecolour}">
+            <span appTaskduecolour dir="ltr">
               {{(task.completionDeadLine)?.seconds * 1000 | taskduetext:now }}
             </span>
           </div>
