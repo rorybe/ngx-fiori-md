@@ -1,4 +1,4 @@
-import { Directive, Input, ElementRef, AfterViewInit } from '@angular/core';
+import { Directive, ElementRef, AfterViewInit } from '@angular/core';
 
 @Directive({
   selector: '[appTaskduecolour]'
@@ -9,7 +9,6 @@ export class TaskduecolourDirective implements AfterViewInit {
   }
 
   ngAfterViewInit() {
-    debugger;
     const dueStatus = this.el.nativeElement.innerHTML.trim();
     const styles = this.el.nativeElement.style;
     switch (dueStatus) {
