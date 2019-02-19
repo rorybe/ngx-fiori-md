@@ -29,7 +29,6 @@ export const firebaseConfig = environment.firebase;
     ShellbarComponent,
     MasterComponent,
     TaskDueTextPipe,
-    MsToSecPipe,
     TaskprioritycolourDirective,
     TileComponent,
     TaskduecolourDirective,
