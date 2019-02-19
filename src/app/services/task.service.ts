@@ -1,30 +1,25 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from 'angularfire2/firestore';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+
+import { ITask } from '../master/types';
 
 @Injectable()
 export class TaskService {
-    currentTask = new BehaviorSubject<any>(null);
+    currentTask = new BehaviorSubject<ITask>(null);
 
     constructor(private db: AngularFirestore) {
     }
 
-    get taskList$() {
-        return this.db.collection('taskheaders')
+    // Now `data` is typed! Awesome.
+    get taskList$(): Observable<ITask[]> {
+        return this.db.collection<ITask>('taskheaders')
             .snapshotChanges()
             .pipe(map(actions => actions.map(a => {
                 const data = a.payload.doc.data();
                 const id = a.payload.doc.id;
                 return { ...data, id };
             })));
-    }
-
-    get selectedTask() {
-        return this.currentTask.asObservable();
-    }
-
-    set selectedTask(value) {
-        this.currentTask.next(value);
     }
 }

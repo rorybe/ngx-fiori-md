@@ -4,6 +4,8 @@ import { TranslateService } from '../services/translate.service';
 import { map } from 'rxjs/operators';
 import { BehaviorSubject } from 'rxjs';
 
+import { ITask } from './types';
+
 @Component({
   selector: 'app-master',
   templateUrl: './master.component.html',
@@ -15,8 +17,8 @@ export class MasterComponent implements OnInit {
 
   loading$ = new BehaviorSubject<boolean>(true);
   searchTerm = '';
-  taskList: any[];
-  taskListSearchResults: any[] = [];
+  taskList: ITask[];
+  taskListSearchResults: ITask[] = [];
   sorted = false;
 
   taskList$ = this.taskService.taskList$.pipe(map(tl => {
@@ -33,7 +35,12 @@ export class MasterComponent implements OnInit {
     private translate: TranslateService
   ) { }
 
-  ngOnInit() { }
+  ngOnInit() {
+    this.taskList$.subscribe(
+      result => window.console.log(result),
+      err => window.console.log(err)
+    );
+  }
 
   onSearchModelChange() {
     this.taskListSearchResults = this.taskList.filter(task =>
@@ -48,8 +55,8 @@ export class MasterComponent implements OnInit {
   onSort() {
     if (!this.sorted) {
       this.taskListSearchResults = this.taskList.sort((a, b) =>
-        a.completionDeadLine.seconds -
-        b.completionDeadLine.seconds
+        a.completionDeadLine.milliseconds -
+        b.completionDeadLine.milliseconds
       );
       return this.sorted = true;
     }

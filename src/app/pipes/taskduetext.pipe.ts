@@ -1,19 +1,21 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
+const ONE_WEEK_IN_MS = 604800000;
+
 @Pipe({
   name: 'taskduetext'
 })
 export class TaskDueTextPipe implements PipeTransform {
 
-  transform(seconds: number, now: number): string {
-    switch (true) {
-      // ended in the past
-      case seconds < now:
-        return 'Overdue';
-      // ending in the next week
-      case seconds < (604800000 + now):
-        return 'Expiring';
-      default:
+  transform(milliseconds: number, now: number): string {
+    if (milliseconds < now) {
+      return 'Overdue';
     }
+
+    if (milliseconds < (ONE_WEEK_IN_MS + now)) {
+      return 'Expiring';
+    }
+
+    return '';
   }
 }

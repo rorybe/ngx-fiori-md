@@ -13,6 +13,7 @@ import { DetailModule } from './detail/detail.module';
 import { PageNotFoundComponent } from './pagenotfound/pagenotfound.component';
 import { TaskService } from './services/task.service';
 import { TaskDueTextPipe } from './pipes/taskduetext.pipe';
+import { MsToSecPipe } from './pipes/msToSec.pipe';
 import { TranslateService } from './services/translate.service';
 import { TileComponent } from './tile/tile.component';
 import { TaskprioritycolourDirective } from './directives/taskprioritycolour.directive';
@@ -28,9 +29,11 @@ export const firebaseConfig = environment.firebase;
     ShellbarComponent,
     MasterComponent,
     TaskDueTextPipe,
+    MsToSecPipe,
     TaskprioritycolourDirective,
     TileComponent,
-    TaskduecolourDirective
+    TaskduecolourDirective,
+    MsToSecPipe
   ],
   imports: [
     HttpClientModule,

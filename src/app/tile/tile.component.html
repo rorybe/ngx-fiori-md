@@ -1,5 +1,10 @@
-<fd-tile *ngFor="let task of taskListSearchResults" [isButton]="true" (click)="selectComponent($event, task.id)"
-  id="tile{{task.id}}" [ngClass]="setMyClasses(task.id)">
+<fd-tile 
+  *ngFor="let task of taskListSearchResults" 
+  [isButton]="true" 
+  (click)="setSelectedTaskId(task.id)"
+  id="tile{{task.id}}" 
+  [class.sapMLIBSelected]="isActive(task.id)"
+>
   <fd-tile-content>
     <fd-tile-title>
       {{ task.taskTitle }}
@@ -11,7 +16,7 @@
             <p>{{ task.createdByName }}</p>
           </div>
           <div class="sapMObjectAttributeDiv">
-            <p>{{translatedTexts?.dueOn}} {{task.completionDeadLine.seconds * 1000 | date:'medium'}}</p>
+            <p>{{translatedTexts?.dueOn}} {{task.completionDeadLine.milliseconds | msToSec | date:'medium'}}</p>
           </div>
           <div class="sapMObjectAttributeDiv">
             <p>{{translatedTexts?.onBehalf}} {{ task.user }}</p>
@@ -25,7 +30,7 @@
           </div>
           <div class="sapMObjStatus">
             <span appTaskduecolour dir="ltr">
-              {{(task.completionDeadLine)?.seconds * 1000 | taskduetext:now }}
+              {{(task.completionDeadLine)?.milliseconds | msToSec | taskduetext:now }}
             </span>
           </div>
         </div>
