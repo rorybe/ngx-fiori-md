@@ -17,6 +17,7 @@ export class MasterComponent implements OnInit {
   searchTerm = '';
   taskList: any[];
   taskListSearchResults: any[] = [];
+  sorted = false;
 
   taskList$ = this.taskService.taskList$.pipe(map(tl => {
     if (tl) {
@@ -42,5 +43,16 @@ export class MasterComponent implements OnInit {
 
   get translatedTexts() {
     return this.translate.i18n;
+  }
+
+  onSort() {
+    if (!this.sorted) {
+      this.taskListSearchResults = this.taskList.sort((a, b) =>
+        a.completionDeadLine.seconds -
+        b.completionDeadLine.seconds
+      );
+      return this.sorted = true;
+    }
+    this.taskListSearchResults = this.taskList.reverse();
   }
 }
