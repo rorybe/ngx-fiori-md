@@ -9,6 +9,7 @@ export class TaskduecolourDirective implements AfterViewInit {
   }
 
   ngAfterViewInit() {
+    debugger;
     const dueStatus = this.el.nativeElement.innerHTML.trim();
     const styles = this.el.nativeElement.style;
     switch (dueStatus) {
