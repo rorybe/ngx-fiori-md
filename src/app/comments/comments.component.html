@@ -1,15 +1,5 @@
 <fd-panel>
     <fd-panel-body class="detailTabBody">
-        <fd-tile class="tileReadOnly">
-            <fd-tile-content>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nulla facere vero voluptates facilis in
-                dolores porro sed perferendis dolorum laudantium? Unde laudantium non animi suscipit nisi fugit, harum
-                esse quod.
-            </fd-tile-content>
-            <fd-tile-media>
-                <img src="./assets/images/headshot-female.png" alt="">
-            </fd-tile-media>
-        </fd-tile>
         <fd-tile>
             <fd-tile-media>
                 <img src="./assets/images/headshot-male.jpg" alt="">
@@ -25,5 +15,18 @@
                 </div>
             </fd-tile-content>
         </fd-tile>
+        <ng-container *ngIf="(comments$ | async) as comments">
+            <ng-container *ngFor="let comment of comments">
+                <fd-tile [ngClass]="comment.type === 'in' ? 'tileCommentInbound' : ''">
+                    <fd-tile-content>
+                        {{ comment?.content }}
+                    </fd-tile-content>
+                    <fd-tile-media>
+                        <img [src]="comment.type === 'in' ? './assets/images/headshot-female.png' : './assets/images/headshot-male.jpg'"
+                            alt="">
+                    </fd-tile-media>
+                </fd-tile>
+            </ng-container>
+        </ng-container>
     </fd-panel-body>
 </fd-panel>
