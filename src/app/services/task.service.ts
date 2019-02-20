@@ -6,9 +6,11 @@ import { CommentService } from './comment.service';
 import { InfoService } from './info.service';
 import { AttachmentService } from './attachment.service';
 
+import { ITask } from '../master/types';
+
 @Injectable()
 export class TaskService {
-    currentTask = new BehaviorSubject<any>(null);
+    currentTask = new BehaviorSubject<ITask>(null);
 
 
     taskId$ = new BehaviorSubject<string>(null);
@@ -52,8 +54,9 @@ export class TaskService {
         this.serviceArray[tabIndex].load(taskId);
     }
 
-    get taskList$() {
-        return this.db.collection('taskheaders')
+    // Now `data` is typed! Awesome.
+    get taskList$(): Observable<ITask[]> {
+        return this.db.collection<ITask>('taskheaders')
             .snapshotChanges()
             // .pipe(takeUntil(this.finalise))
             .pipe(map(actions => actions.map(a => {

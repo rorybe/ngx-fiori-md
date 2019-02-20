@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslateService } from '../services/translate.service';
 import { TaskService } from '../services/task.service';
+import { ITask } from '../master/types';
 
 @Component({
   selector: 'app-tile',
@@ -9,9 +10,11 @@ import { TaskService } from '../services/task.service';
   styleUrls: ['./tile.component.scss']
 })
 export class TileComponent implements OnInit {
-  @Input() taskListSearchResults: any[];
-  selectedElement;
+  
+  @Input() taskListSearchResults: ITask[];
+  selectedTaskId = this.taskService.taskId$;
   now = new Date().getTime();
+
   constructor(
     private router: Router,
     private translate: TranslateService,
@@ -21,20 +24,15 @@ export class TileComponent implements OnInit {
     this.taskService.taskId$.next(this.router.url.split('/')[2]); // @TODO fix route
   }
 
-  setSelectedTask(taskId) {
-    return taskId === this.router.url.split('/')[2] ? 'sapMLIBSelected' : '';
+  setSelectedTaskId(taskId: string) {
+    this.taskService.taskId$.next(taskId);
+    // An example to show the Page Not Found component;
+    taskId = taskId === 'yJHX8Utr4QFygHNcDfOL' ? 'yJHX8Utr4QFygHNcDfOL' : taskId;
+    this.router.navigate(['detail', taskId]);
   }
 
-  selectComponent(event: MouseEvent, taskId: string) {
-    if (this.selectedElement) {
-      this.selectedElement.classList.remove('sapMLIBSelected');
-    }
-    this.selectedElement = event.srcElement.closest('fd-tile');
-    this.selectedElement.classList.add('sapMLIBSelected');
-    this.taskService.taskId$.next(taskId);
-    this.taskService.reset();
-
-    this.router.navigate([taskId !== 'yJHX8Utr4QFygHNcDfOL' ? `detail/${taskId}` : 'notfound']);
+  isActive(taskId: string): boolean {
+    return taskId === this.selectedTaskId.value;
   }
 
   get translatedTexts() {

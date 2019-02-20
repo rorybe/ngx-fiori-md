@@ -23,13 +23,13 @@
                             <!-- <ng-container i18n="@@dueOn">Due on</ng-container> -->
                             <span>{{translatedTexts?.dueOn}} </span>
                             <span>
-                                {{task.completionDeadLine.seconds * 1000 | date:'medium'}}
+                                {{(task.completionDeadLine)?.seconds | msToSec | date:'medium'}}
                             </span>
                         </fd-action-bar-description>
                         <fd-action-bar-description class="sapMOHAttrRow">
                             <!-- <ng-container i18n="@@createdOn">Created on</ng-container> -->
                             <span>{{translatedTexts?.createdOn}} </span>
-                            {{task.createdOn.seconds * 1000 | date:'medium'}}
+                            {{(task.createdOn)?.seconds | msToSec | date:'medium'}}
                         </fd-action-bar-description>
                     </div>
                 </fd-action-bar-description>
