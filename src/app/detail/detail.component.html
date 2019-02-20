@@ -1,7 +1,6 @@
 <fd-panel>
     <fd-panel-filters>
         <div class="barMiddle">
-
             <ng-container *ngIf="task$ | async as task">
                 <span>{{task.taskDefinitionName}} </span>
                 <fd-inline-help *ngIf="task.taskDefinitionName" [position]="'bottom-right'">
@@ -42,7 +41,7 @@
                 </fd-inline-help>
             </fd-action-bar-actions>
         </fd-action-bar>
-        <fd-tab-list #tabList *ngIf="loading$ | async" (tabChange)="onTabChange()">
+        <fd-tab-list #tabList *ngIf="!(loading$ | async)" (tabChange)="onTabChange()">
             <fd-tab id="infoTab" #infoTab [title]="translatedTexts?.info">
                 <app-info></app-info>
             </fd-tab>
