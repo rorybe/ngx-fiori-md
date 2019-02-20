@@ -13,36 +13,39 @@ import { DetailModule } from './detail/detail.module';
 import { PageNotFoundComponent } from './pagenotfound/pagenotfound.component';
 import { TaskService } from './services/task.service';
 import { TaskDueTextPipe } from './pipes/taskduetext.pipe';
+import { MsToSecPipe } from './shared/pipes/mstoSec.pipe';
 import { TranslateService } from './services/translate.service';
 import { TileComponent } from './tile/tile.component';
 import { TaskprioritycolourDirective } from './directives/taskprioritycolour.directive';
 import { environment } from '../environments/environment';
 import { TaskduecolourDirective } from './directives/taskduecolour.directive';
+import { SharedModule } from './shared/shared.module';
 
 export const firebaseConfig = environment.firebase;
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    PageNotFoundComponent,
-    ShellbarComponent,
-    MasterComponent,
-    TaskDueTextPipe,
-    TaskprioritycolourDirective,
-    TileComponent,
-    TaskduecolourDirective
-  ],
   imports: [
-    HttpClientModule,
     BrowserModule,
-    FundamentalNgxModule,
-    FormsModule,
     DetailModule,
+
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFirestoreModule,
-    AppRoutingModule
+    AppRoutingModule,
+    SharedModule,
+    FundamentalNgxModule
+  ],
+  declarations: [
+    TaskDueTextPipe,
+    TaskprioritycolourDirective,
+    AppComponent,
+    MasterComponent,
+    TileComponent,
+    ShellbarComponent,
+    PageNotFoundComponent,
+    TaskduecolourDirective,
   ],
   exports: [
+
   ],
   providers: [TranslateService, TaskService],
   bootstrap: [AppComponent]
