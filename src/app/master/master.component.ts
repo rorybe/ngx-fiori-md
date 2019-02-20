@@ -11,8 +11,6 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class MasterComponent implements OnInit {
 
-  // @ViewChild('content') contentElRef: ElementRef;
-
   loading$ = new BehaviorSubject<boolean>(true);
   searchTerm = '';
   taskList: any[];

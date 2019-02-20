@@ -1,5 +1,5 @@
 <fd-tile *ngFor="let task of taskListSearchResults" [isButton]="true" (click)="selectComponent($event, task.id)"
-  id="tile{{task.id}}" [ngClass]="setMyClasses(task.id)">
+  id="tile{{task.id}}" [ngClass]="setSelectedTask(task.id)">
   <fd-tile-content>
     <fd-tile-title>
       {{ task.taskTitle }}

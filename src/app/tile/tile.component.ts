@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslateService } from '../services/translate.service';
+import { TaskService } from '../services/task.service';
 
 @Component({
   selector: 'app-tile',
@@ -11,12 +12,16 @@ export class TileComponent implements OnInit {
   @Input() taskListSearchResults: any[];
   selectedElement;
   now = new Date().getTime();
-  constructor(private router: Router, private translate: TranslateService) { }
+  constructor(
+    private router: Router,
+    private translate: TranslateService,
+    private taskService: TaskService) { }
 
   ngOnInit() {
+    this.taskService.taskId$.next(this.router.url.split('/')[2]); // @TODO fix route
   }
 
-  setMyClasses(taskId) {
+  setSelectedTask(taskId) {
     return taskId === this.router.url.split('/')[2] ? 'sapMLIBSelected' : '';
   }
 
@@ -26,14 +31,13 @@ export class TileComponent implements OnInit {
     }
     this.selectedElement = event.srcElement.closest('fd-tile');
     this.selectedElement.classList.add('sapMLIBSelected');
+    this.taskService.taskId$.next(taskId);
+    this.taskService.reset();
+
     this.router.navigate([taskId !== 'yJHX8Utr4QFygHNcDfOL' ? `detail/${taskId}` : 'notfound']);
-    // .then(() => {
-      // this.contentElRef.nativeElement.focus();
-    // });
   }
 
   get translatedTexts() {
     return this.translate.i18n;
   }
-
 }
