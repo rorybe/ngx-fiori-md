@@ -1,0 +1,36 @@
+<fd-panel>
+    <fd-panel-body class="detailTabBody">
+        <div class="gridContainer">
+            <ng-container *ngIf="(info$ | async) as info">
+                <div class="leftGrid">
+                    <ng-container *ngFor="let key of Object.keys(info)">
+                        <span>{{key | uppercase}} : </span>
+                    </ng-container>
+                </div>
+                <div class="rightGrid">
+                    <ng-container *ngFor="let key of Object.keys(info)">
+                        <span>
+                            {{(info[key]?.seconds | secToMs | date:'fullDate') || info[key]}}
+                        </span>
+                    </ng-container>
+                </div>
+            </ng-container>
+        </div>
+        <ng-container *ngIf="(tableItems$ | async); let tableItems">
+            <fd-table *ngIf="tableItems.length>0">
+                <fd-table-header>
+                    <th *ngFor="let key of Object.keys(tableItems[0])">{{key}}</th>
+                </fd-table-header>
+                <fd-table-body>
+                    <ng-container *ngFor="let row of tableItems">
+                        <tr>
+                            <ng-container *ngFor="let key of Object.keys(row)">
+                                <td>{{(row[key]?.seconds | secToMs | date:'fullDate') || row[key]}}</td>
+                            </ng-container>
+                        </tr>
+                    </ng-container>
+                </fd-table-body>
+            </fd-table>
+        </ng-container>
+    </fd-panel-body>
+</fd-panel>

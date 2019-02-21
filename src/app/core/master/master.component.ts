@@ -1,16 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { TaskService } from '../services/task.service';
 import { TranslateService } from '../services/translate.service';
 import { map } from 'rxjs/operators';
 import { BehaviorSubject } from 'rxjs';
-import { Task } from '../models/Task.model';
+import { Task } from '../../models/Task.model';
 
 @Component({
   selector: 'app-master',
   templateUrl: './master.component.html',
   styleUrls: ['./master.component.scss']
 })
-export class MasterComponent {
+export class MasterComponent implements OnDestroy {
 
   loading$ = new BehaviorSubject<boolean>(true);
   searchTerm = '';
@@ -51,5 +51,9 @@ export class MasterComponent {
       return this.sorted = true;
     }
     this.taskListSearchResults = this.taskList.reverse();
+  }
+
+  ngOnDestroy() {
+    this.taskService.unsubscribeServices();
   }
 }

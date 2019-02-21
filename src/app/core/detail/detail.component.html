@@ -43,27 +43,27 @@
         </fd-action-bar>
         <fd-tab-list #tabList *ngIf="!(loading$ | async)" (tabChange)="onTabChange()">
             <fd-tab id="infoTab" #infoTab [title]="translatedTexts?.info">
-                <app-info></app-info>
+                <fd-loading-spinner *ngIf="infoLoading$ | async else info" [loading]="true">
+                </fd-loading-spinner>
+                <ng-template #info>
+                    <app-info></app-info>
+                </ng-template>
             </fd-tab>
             <fd-tab id="commentsTab" i18n-title="@@comments" [title]="translatedTexts?.comments"
                 [disabled]="(activeTabs$ | async)['commentsTab']">
-                <ng-container>
-                    <fd-loading-spinner *ngIf="commentLoading$ | async else comments" [loading]="true">
-                    </fd-loading-spinner>
-                    <ng-template #comments>
-                        <app-comments></app-comments>
-                    </ng-template>
-                </ng-container>
+                <fd-loading-spinner *ngIf="commentLoading$ | async else comments" [loading]="true">
+                </fd-loading-spinner>
+                <ng-template #comments>
+                    <app-comments></app-comments>
+                </ng-template>
             </fd-tab>
             <fd-tab id="attachmentsTab" i18n-title="@@attachments" [title]="translatedTexts?.attachments"
                 [disabled]="(activeTabs$ | async)['attachmentsTab']">
-                <ng-container>
-                    <fd-loading-spinner *ngIf="attachmentsLoading$ | async else attachments" [loading]="true">
-                    </fd-loading-spinner>
-                    <ng-template #attachments>
-                        <app-attachments></app-attachments>
-                    </ng-template>
-                </ng-container>
+                <fd-loading-spinner *ngIf="attachmentsLoading$ | async else attachments" [loading]="true">
+                </fd-loading-spinner>
+                <ng-template #attachments>
+                    <app-attachments></app-attachments>
+                </ng-template>
             </fd-tab>
         </fd-tab-list>
     </fd-panel-body>

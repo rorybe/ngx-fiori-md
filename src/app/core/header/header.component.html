@@ -11,7 +11,7 @@
     </fd-copilot>
     <fd-shellbar-actions [user]="user" [userMenu]="userMenu" [productSwitcher]="productSwitcher">
         <fd-shellbar-action [label]="'Search'">
-            <fd-search-input [inShellbar]="true" [dropdownValues]="searchTerms" [(ngModel)]="searchTerm"
+            <fd-search-input [inShellbar]="true" [dropdownValues]="[]" [(ngModel)]="searchTerm"
                 [searchFunction]="exampleSearchFunction">
             </fd-search-input>
         </fd-shellbar-action>
