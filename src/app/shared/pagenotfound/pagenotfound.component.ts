@@ -10,7 +10,7 @@ export class PageNotFoundComponent {
 
     constructor(private translate: TranslateService) { }
 
-    get translatedTexts(): Promise<{}> {
+    get translatedTexts() {
         return this.translate.i18n;
     }
 }

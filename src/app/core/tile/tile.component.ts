@@ -39,7 +39,7 @@ export class TileComponent implements OnInit {
         return taskId === this.selectedTaskId.value;
     }
 
-    get translatedTexts(): Promise<{}> {
+    get translatedTexts() {
         return this.translate.i18n;
     }
 }

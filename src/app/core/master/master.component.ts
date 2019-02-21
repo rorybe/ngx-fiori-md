@@ -38,7 +38,7 @@ export class MasterComponent implements OnDestroy {
     );
   }
 
-  get translatedTexts(): Promise<{}> {
+  get translatedTexts() {
     return this.translate.i18n;
   }
 
