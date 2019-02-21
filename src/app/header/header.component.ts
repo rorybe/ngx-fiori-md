@@ -3,11 +3,11 @@ import { TranslateService } from '../services/translate.service';
 import { TaskService } from '../services/task.service';
 
 @Component({
-    selector: 'app-shellbar',
-    templateUrl: './shellbar.component.html',
-    styleUrls: ['./shellbar.component.scss']
+    selector: 'app-header',
+    templateUrl: './header.component.html',
+    styleUrls: ['./header.component.scss']
 })
-export class ShellbarComponent {
+export class HeaderComponent {
 
     constructor(
         private translate: TranslateService,

@@ -7,9 +7,7 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class InfoService {
 
-
-
-  constructor(private afs: AngularFirestore) { }
+  constructor(private db: AngularFirestore) { }
 
   load(taskId: string) {
 

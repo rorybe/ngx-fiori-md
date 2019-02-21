@@ -2,12 +2,12 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { MsToSecPipe } from './pipes/mstoSec.pipe';
+import { SecToMsPipe } from './pipes/secToMs.pipe';
 import { FundamentalNgxModule } from 'fundamental-ngx';
 
 @NgModule({
   declarations: [
-    MsToSecPipe
+    SecToMsPipe
   ],
   imports: [
     CommonModule,
@@ -18,7 +18,7 @@ import { FundamentalNgxModule } from 'fundamental-ngx';
   exports: [
     CommonModule,
     FormsModule,
-    MsToSecPipe
+    SecToMsPipe
   ],
   providers: [],
   bootstrap: []

@@ -1,9 +1,9 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-  name: 'msToSec'
+  name: 'secToMs'
 })
-export class MsToSecPipe implements PipeTransform {
+export class SecToMsPipe implements PipeTransform {
 
   transform(ms: number): number {
     return ms * 1000;

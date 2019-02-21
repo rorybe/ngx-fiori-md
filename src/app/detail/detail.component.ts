@@ -1,11 +1,10 @@
-import { Component, OnInit, ElementRef, ViewChild, OnDestroy } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Component, OnInit, ElementRef, ViewChild, OnDestroy, AfterViewInit, ViewChildren } from '@angular/core';
 import { TaskService } from '../services/task.service';
-import { AngularFirestoreDocument, AngularFirestore } from 'angularfire2/firestore';
-import { Observable, Subject, BehaviorSubject, combineLatest } from 'rxjs';
+import { Subject, BehaviorSubject, combineLatest, forkJoin } from 'rxjs';
 import { TranslateService } from '../services/translate.service';
 import { takeUntil } from 'rxjs/operators';
-import { CommentService } from '../services/comment.service';
+import { TabId } from '../models/TabId';
+import { Task } from '../models/Task.model';
 
 @Component({
   selector: 'app-detail',
@@ -16,23 +15,17 @@ export class DetailComponent implements OnInit, OnDestroy {
   @ViewChild('tabList') tabList;
 
   task$ = this.taskService.taskDetails$;
-  taskDoc: AngularFirestoreDocument<any>;
+  task: Task;
   loading$ = this.taskService.loading$;
   commentLoading$ = this.taskService.commentLoading$;
+  activeTabs$ = this.taskService.activeTabs$;
+  tabIndex$ = new BehaviorSubject<number>(null);
+  finalise$: Subject<boolean> = new Subject();
 
   loadCommentsTab = false;
   loadAttachmentsTab = false;
 
-  currentTask = this.taskService.currentTask;
-
-  finalise: Subject<boolean> = new Subject();
-
-  tabIndex$ = new BehaviorSubject<number>(null);
-
-
   constructor(
-    private afs: AngularFirestore,
-    private route: ActivatedRoute,
     private taskService: TaskService,
     private translateService: TranslateService,
   ) { }
@@ -41,19 +34,18 @@ export class DetailComponent implements OnInit, OnDestroy {
     this.onTabChange();
 
     combineLatest(this.taskService.taskId$, this.tabIndex$).pipe(
-      takeUntil(this.finalise))
+      takeUntil(this.finalise$))
       .subscribe(([tId, tInd]) => {
         this.taskService.load(tId, tInd); // this is bad. need to translate id's into somethign usabble (local method)
       });
 
-
-    //chief check me also if I'm needed take until this bad boy
-    // this.route.params.pipe(takeUntil(this.finalise)).subscribe(params => {
-    // this.task$ = this.afs.doc(`taskheaders/${params.taskId}`).valueChanges();
-    // this.loading = false;
-    // });
+    this.taskService.taskDetails$.pipe(takeUntil(this.finalise$)).subscribe(taskDetail => {
+      if (taskDetail) {
+        return this.task = taskDetail as Task;
+      }
+      this.task = undefined;
+    });
   }
-
 
   get translatedTexts() {
     return this.translateService.i18n;
@@ -65,14 +57,13 @@ export class DetailComponent implements OnInit, OnDestroy {
       this.tabList.selected.id
       ? this.tabList.selected.id : undefined;
     switch (tabId) {
-      case 'infoTab':
+      case TabId.infoTab:
         this.tabIndex$.next(0);
         break;
-      case 'commentsTab':
+      case TabId.commentsTab:
         this.tabIndex$.next(1);
-        // this.tabList.select('commentsTab');
         break;
-      case 'attachmentsTab':
+      case TabId.attachmentsTab:
         this.tabIndex$.next(2);
         break;
       default:
@@ -80,10 +71,9 @@ export class DetailComponent implements OnInit, OnDestroy {
     }
   }
 
-
   ngOnDestroy() {
-    this.finalise.next(true);
-    this.finalise.complete();
+    this.finalise$.next(true);
+    this.finalise$.complete();
   }
 
 }

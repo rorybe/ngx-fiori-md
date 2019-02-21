@@ -7,7 +7,6 @@ export class AttachmentService {
 
   constructor() { }
 
-  load(taskId: string) {
-    // load me up
+  load() {
   }
 }

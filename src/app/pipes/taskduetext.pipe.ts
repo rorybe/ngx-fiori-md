@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { TaskStatus } from '../master/types';
+import { TaskStatus } from '../models/TaskStatus';
 
 const ONE_WEEK_IN_MS = 604800000;
 
