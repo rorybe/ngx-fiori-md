@@ -9,6 +9,8 @@ import { AttachmentService } from './attachment.service';
 import { TaskName, AttachmentTabTasks, InfoTabTasks } from '../models/TaskName';
 import { ActiveTab } from '../models/TabId';
 
+import { ITask } from '../master/types';
+
 @Injectable()
 export class TaskService {
 
