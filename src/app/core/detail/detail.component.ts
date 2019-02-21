@@ -1,10 +1,10 @@
-import { Component, OnInit, ElementRef, ViewChild, OnDestroy, AfterViewInit, ViewChildren } from '@angular/core';
+import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { TaskService } from '../services/task.service';
-import { Subject, BehaviorSubject, combineLatest, forkJoin } from 'rxjs';
+import { Subject, BehaviorSubject, combineLatest } from 'rxjs';
 import { TranslateService } from '../services/translate.service';
 import { takeUntil } from 'rxjs/operators';
-import { TabId } from '../models/TabId';
-import { Task } from '../models/Task.model';
+import { TabId } from '../../models/TabId.model';
+import { Task } from '../../models/Task.model';
 
 @Component({
   selector: 'app-detail',
@@ -17,6 +17,7 @@ export class DetailComponent implements OnInit, OnDestroy {
   task$ = this.taskService.taskDetails$;
   task: Task;
   loading$ = this.taskService.loading$;
+  infoLoading$ = this.taskService.infoLoading$;
   commentLoading$ = this.taskService.commentLoading$;
   activeTabs$ = this.taskService.activeTabs$;
   tabIndex$ = new BehaviorSubject<number>(null);
@@ -36,7 +37,7 @@ export class DetailComponent implements OnInit, OnDestroy {
     combineLatest(this.taskService.taskId$, this.tabIndex$).pipe(
       takeUntil(this.finalise$))
       .subscribe(([tId, tInd]) => {
-        this.taskService.load(tId, tInd); // this is bad. need to translate id's into somethign usabble (local method)
+        this.taskService.load(tId, tInd);
       });
 
     this.taskService.taskDetails$.pipe(takeUntil(this.finalise$)).subscribe(taskDetail => {
@@ -47,11 +48,11 @@ export class DetailComponent implements OnInit, OnDestroy {
     });
   }
 
-  get translatedTexts() {
+  get translatedTexts(): Promise<{}> {
     return this.translateService.i18n;
   }
 
-  onTabChange() {
+  onTabChange(): void {
     const tabId = this.tabList &&
       this.tabList.selected &&
       this.tabList.selected.id
@@ -71,7 +72,7 @@ export class DetailComponent implements OnInit, OnDestroy {
     }
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     this.finalise$.next(true);
     this.finalise$.complete();
   }

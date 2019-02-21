@@ -1,4 +1,5 @@
 import { Directive, ElementRef, AfterViewInit } from '@angular/core';
+import { TaskStatus } from 'src/app/models/TaskStatus';
 
 @Directive({
   selector: '[appTaskduecolour]'
@@ -12,10 +13,10 @@ export class TaskduecolourDirective implements AfterViewInit {
     const dueStatus = this.el.nativeElement.innerHTML.trim();
     const styles = this.el.nativeElement.style;
     switch (dueStatus) {
-      case 'Overdue':
+      case TaskStatus.overdue:
         styles.color = 'red';
         break;
-      case 'Expiring':
+      case TaskStatus.expiring:
         styles.color = 'orange';
         break;
       default:

@@ -1,17 +1,14 @@
-import { Component, OnInit, Input, Inject } from '@angular/core';
-import { TranslateService } from '../services/translate.service';
+import { Component } from '@angular/core';
+import { TranslateService } from '../../core/services/translate.service';
 
 @Component({
     selector: 'app-pagenotfound',
     templateUrl: './pagenotfound.component.html',
     styleUrls: ['./pagenotfound.component.scss']
 })
-export class PageNotFoundComponent implements OnInit {
+export class PageNotFoundComponent {
 
     constructor(private translate: TranslateService) { }
-
-    ngOnInit() {
-    }
 
     get translatedTexts() {
         return this.translate.i18n;

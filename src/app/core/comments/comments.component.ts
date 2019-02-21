@@ -1,7 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { TranslateService } from '../services/translate.service';
-import { TaskService } from '../services/task.service';
-import { tap, map } from 'rxjs/operators';
 import { CommentService } from '../services/comment.service';
 
 @Component({

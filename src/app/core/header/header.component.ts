@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { TranslateService } from '../services/translate.service';
 import { TaskService } from '../services/task.service';
 
@@ -9,6 +9,9 @@ import { TaskService } from '../services/task.service';
 })
 export class HeaderComponent {
 
+    taskList$ = this.taskService.taskList$;
+    searchTerm = '';
+
     constructor(
         private translate: TranslateService,
         private taskService: TaskService) {
@@ -17,8 +20,6 @@ export class HeaderComponent {
     get translatedTexts() {
         return this.translate.i18n;
     }
-
-    taskList$ = this.taskService.taskList$;
 
     productMenuItems = [
         { name: 'Fiori Fundamentals Worklist App', callback: () => { alert('Application A Clicked'); } },
@@ -35,25 +36,6 @@ export class HeaderComponent {
         { text: 'Toggle Language', callback: this.toggleLanguage.bind(this) },
         { text: 'Settings', callback: this.settingsCallback.bind(this) },
         { text: 'Sign Out', callback: this.signOutCallback.bind(this) }
-    ];
-
-    actions = [
-        {
-            glyph: 'bell',
-            callback: this.actionNotificationCallback,
-            label: 'Notifications',
-            notificationCount: 12,
-            notificationLabel: 'Unread Notifications'
-        }
-    ];
-
-    searchTerm = '';
-
-    searchTerms = [
-        { text: 'Apple', callback: () => { alert('Apple Clicked'); } },
-        { text: 'Banana', callback: () => { alert('Banana Clicked'); } },
-        { text: 'Kiwi', callback: () => { alert('Kiwi Clicked'); } },
-        { text: 'Strawberry', callback: () => { alert('Strawberry Clicked'); } }
     ];
 
     productSwitcher = [
@@ -130,5 +112,4 @@ export class HeaderComponent {
     productSwitcherCallback($event, product) {
         alert(product + ' Product Clicked');
     }
-
 }

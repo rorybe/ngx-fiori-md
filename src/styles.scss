@@ -1,199 +1,29 @@
-/* You can add global styles to this file, and also import other style files */
-// $gutter-size: 15px;
-
-// .container {
-//     max-width: 960px;
-//     margin-left: auto;
-//     margin-right: auto;
-//     padding-left: 15px;
-//     padding-right: 15px;
-// }
-// .row {
-//     display: flex;
-//     margin-right: -15px;
-//     margin-left: -15px;
-// }
-// .col {
-//     padding-right: 15px;
-//     padding-left: 15px;
-//     flex: 1;
-// }
-// .navbar {
-//     background-color: #eee;
-//     margin-bottom: 20px;
-// }
-// .nav {
-//     list-style-type: none;
-// }
-// .nav-item {
-//     margin-bottom: 0;
-//     display: inline-block;
-// }
-// .nav-link {
-//     display: block;
-//     padding: 10px 15px;
-//     text-decoration: none;
-// }
-
-// .code-snippet {
-//     padding: 0.15rem;
-//     background: rgba(0, 0, 0, 0.03);
-// }
-
-// .fd-pagination {
-//     display: inline;
-// }
-
-// h2 {
-//     font-weight: 550;
-// }
-
-// fd-card {
-//     width: 80%;
-// }
-
-.fd-tabs__panel.is-expanded {
-    // width: 95%;
-    background: white;
-    border-top: 0.125rem solid #d1e0ee;
-    border-bottom: 0.125rem solid #d1e0ee;
+html {
+    min-height: 100%;
+    overflow: hidden;
 }
 
-// pre {
-//     margin: 25px 0px;
-//     background-color: #fff !important;
-//     white-space: pre-wrap;
-//     white-space: -moz-pre-wrap;
-//     white-space: -pre-wrap;
-//     white-space: -o-pre-wrap;
-//     word-wrap: break-word;
-//     display: flex;
-//     padding: 1rem;
-//     font-size: 13px;
-//     line-height: 1.42857143;
-//     color: #333;
-//     word-break: break-all;
-//     border: 1px solid #ccc;
-//     border-radius: 4px;
-
-//     code {
-//         display: block;
-//     }
-// }
-
-// .docs-component {
-//     margin-bottom: -28px;
-//     border-radius: 4px;
-//     border-bottom-left-radius: 0;
-//     border-bottom-right-radius: 0;
-//     padding-bottom: 4px;
-//     border: 1px solid #ccc;
-//     transition: 0.25s background-color;
-
-//     pre {
-//         background-color: #fff;
-//     }
-
-//     ul {
-//         list-style: none;
-//         margin-left: 0;
-//         padding-left: 0;
-
-//         a:hover {
-//             text-decoration: none;
-//             color: inherit;
-//         }
-//     }
-
-//     .fd-side-nav {
-//         max-width: 250px;
-//     }
-
-//     .fd-side-nav__link {
-//         color: inherit;
-//     }
-
-//     .fd-side-nav--icons {
-//         max-width: 65px;
-//     }
-
-//     .fd-product-tile {
-//         min-width: 30%;
-//         float: left;
-//         margin-right: 20px;
-//     }
-
-//     .fd-tile-grid {
-//         .fd-product-tile {
-//             margin-right: 0;
-//         }
-//     }
-
-//     .fd-tile__content {
-//         padding: 20px;
-//     }
-
-//     a[aria-disabled='true']:hover,
-//     a[aria-disabled='true']:visited,
-//     a[aria-disabled='true']:active,
-//     a[aria-disabled='true']:focus,
-//     a.is-disabled {
-//         color: rgba(10, 110, 209, 0.4);
-//         cursor: not-allowed;
-//         text-decoration: none;
-//     }
-
-//     .fd-breadcrumb {
-//         margin-bottom: 8px;
-//     }
-// }
-
-// .fd-centered-content {
-//     text-align: center;
-// }
-
-// .is-disabled {
-//     pointer-events: none;
-// }
-
-// //highlight overrides
-// .hljs-tag {
-//     color: #000080;
-// }
-// .hljs-name {
-//     color: #000080;
-// }
-// .hljs-attr {
-//     color: #008080;
-// }
-// .hljs-string {
-//     color: #d14;
-// }
-
-// .side-nav__search {
-//     padding: 10px 10px 0 10px;
-// }
-
-// .skip-navigation {
-//     position: absolute;
-//     left: -5000px;
-//     top: 0;
-//     width: 1px;
-//     height: 1px;
-//     overflow: hidden;
-// }
-// a:focus {
-//     text-decoration: underline;
-// }
-
-
-// ADDED
+app-detail, app-master {
+    height: calc(100vh - 6.5rem);
+}
 
 app-master {
     float: left;
 }
 
-// HACKY TEMP JOB
+app-detail>.fd-panel {
+    width: 100%;
+}
+
+app-detail .fd-panel__body {
+    padding: 0;
+}
+
+app-detail .fd-panel__filters {
+    box-shadow: inset 0 -0.0625rem #d1e0ee;
+    padding-bottom: 1px;
+}
+
 fd-panel .fd-panel__footer {
     bottom: 0;
     position: absolute;
@@ -207,6 +37,12 @@ fd-panel .fd-panel__footer {
     z-index: 2;
 }
 
+.fd-tabs__panel.is-expanded {
+    background: white;
+    border-top: 0.125rem solid #d1e0ee;
+    border-bottom: 0.125rem solid #d1e0ee;
+}
+
 div.fd-panel__footer {
     bottom: 0;
     position: absolute;
@@ -218,24 +54,9 @@ div.fd-panel__footer {
     justify-content: flex-end;
 }
 
-app-detail>.fd-panel {
-    width: 100%;
-}
-
-app-detail, app-master {
-    height: calc(100vh - 6.5rem);
-}
-
 .fd-tabs {
     background-color: inherit !important;
 }
-
-// .loading-align {
-//     height: 50vh;
-//     display: flex;
-//     justify-content: center;
-//     align-items: center;
-// }
 
 .masterPanelBody>div {
     padding: 0;
@@ -266,20 +87,10 @@ fd-tile-title>.fd-tile__title {
     padding: 12px 0.25rem 0.1875rem 0.25rem;
 }
 
-app-detail .fd-panel__filters {
-    box-shadow: inset 0 -0.0625rem #d1e0ee;
-    padding-bottom: 1px;
-}
-
 .barMiddle {
     text-align: center;
     height: 2.5rem !important;
     font-size: large;
-}
-
-html {
-    min-height: 100%;
-    overflow: hidden;
 }
 
 .fd-panel__footer>button {
@@ -290,10 +101,6 @@ html {
 
 .masterPanelBody .fd-panel__body {
     width: 319px;
-}
-
-app-detail .fd-panel__body {
-    padding: 0;
 }
 
 ul.fd-tabs {

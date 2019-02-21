@@ -1,0 +1,15 @@
+.gridContainer {
+    display: flex; 
+    justify-content: center; 
+    margin-bottom: 2rem;
+}
+
+.leftGrid {
+    display: grid; 
+    text-align: end;
+}   
+
+.rightGrid {
+   display: grid; 
+   margin-left: 1rem;
+}
