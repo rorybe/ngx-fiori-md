@@ -10,20 +10,16 @@ import { CommentService } from '../services/comment.service';
   styleUrls: ['./comments.component.scss']
 })
 
-export class CommentsComponent implements OnInit {
+export class CommentsComponent {
 
   loading$ = this.commentService.loading$;
   comments$ = this.commentService.comments$;
 
   constructor(
-    private translate: TranslateService,
+    private translateService: TranslateService,
     private commentService: CommentService) { }
 
-  ngOnInit() {
-  }
-
   get translatedTexts() {
-    return this.translate.i18n;
+    return this.translateService.i18n;
   }
-
 }

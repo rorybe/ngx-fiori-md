@@ -4,25 +4,23 @@ import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { map, takeUntil } from 'rxjs/operators';
 import { CommentService } from './comment.service';
 import { InfoService } from './info.service';
+import { Task } from '../models/Task.model';
 import { AttachmentService } from './attachment.service';
-
-import { ITask } from '../master/types';
+import { TaskName, AttachmentTabTasks, InfoTabTasks } from '../models/TaskName';
+import { ActiveTab } from '../models/TabId';
 
 @Injectable()
 export class TaskService {
-    currentTask = new BehaviorSubject<ITask>(null);
-
-
-    taskId$ = new BehaviorSubject<string>(null);
-
-    taskDetails$ = new Subject();
 
     loadCommentsTab = false;
     loadAttachmentsTab = false;
 
+    taskId$ = new BehaviorSubject<string>(null);
+    taskDetails$ = new Subject();
     loading$ = new BehaviorSubject<boolean>(true);
+    activeTabs$ = new BehaviorSubject<ActiveTab>(new ActiveTab());
     commentLoading$ = this.commentService.loading$;
-    afsdb;
+
 
     constructor(
         private db: AngularFirestore,
@@ -32,17 +30,19 @@ export class TaskService {
     ) {
     }
 
-    serviceArray = [this.infoService, this.commentService, this.attachmentService];
+    serviceArray = [this.infoService, this.commentService, this.attachmentService /* add services here */];
 
     load(taskId: string, tabIndex: number) {
         if (!taskId) {
             return;
         }
-
+        // this was a separate call to give an example how
+        // different data could be assigned to the detail view
         this.db.doc(`taskheaders/${taskId}`).valueChanges()
             // .pipe(takeUntil(this.finalise))
-            .subscribe(taskDetails => {
+            .subscribe((taskDetails: Task) => {
                 if (taskDetails) {
+                    this.updateDisabledTabs(taskDetails.taskDefinitionName);
                     this.taskDetails$.next(taskDetails);
                     this.loading$.next(false);
                 }
@@ -54,9 +54,8 @@ export class TaskService {
         this.serviceArray[tabIndex].load(taskId);
     }
 
-    // Now `data` is typed! Awesome.
-    get taskList$(): Observable<ITask[]> {
-        return this.db.collection<ITask>('taskheaders')
+    get taskList$(): Observable<Task[]> {
+        return this.db.collection<Task>('taskheaders')
             .snapshotChanges()
             // .pipe(takeUntil(this.finalise))
             .pipe(map(actions => actions.map(a => {
@@ -66,19 +65,19 @@ export class TaskService {
             })));
     }
 
-
-    // return this.db.collection('taskheaders')
-    //     .snapshotChanges()
-    //     .pipe(map(actions => actions.map(a => {
-    //         const data = a.payload.doc.data();
-    //         const id = a.payload.doc.id;
-    //         return { ...data, id };
-    //     })));
+    updateDisabledTabs(taskName: TaskName) {
+        const tabs = {
+            infoTab: !InfoTabTasks.includes(taskName),
+            commentsTab: !true,
+            attachmentsTab: !AttachmentTabTasks.includes(taskName)
+        };
+        this.activeTabs$.next(tabs);
+    }
 
     reset() {
         //reset loading flags, reset data
         this.taskDetails$.next(undefined);
         this.loading$.next(true);
-        // call lower levelr esets here
+        //call lower level resets here
     }
 }

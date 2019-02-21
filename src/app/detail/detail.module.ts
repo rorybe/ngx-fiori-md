@@ -7,7 +7,7 @@ import { CommonModule } from '@angular/common';
 import { CommentsComponent } from '../comments/comments.component';
 import { AttachmentsComponent } from '../attachments/attachments.component';
 import { InfoComponent } from '../info/info.component';
-import { MsToSecPipe } from '../shared/pipes/mstoSec.pipe';
+import { SecToMsPipe } from '../shared/pipes/SectoMs.pipe';
 import { SharedModule } from '../shared/shared.module';
 
 @NgModule({

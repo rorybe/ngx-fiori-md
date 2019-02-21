@@ -1,7 +1,7 @@
 <fd-panel>
     <fd-panel-filters>
         <div class="barMiddle">
-            <ng-container *ngIf="task$ | async as task">
+            <ng-container *ngIf="task">
                 <span>{{task.taskDefinitionName}} </span>
                 <fd-inline-help *ngIf="task.taskDefinitionName" [position]="'bottom-right'">
                     {{task.taskDefinitionName}}
@@ -11,7 +11,7 @@
     </fd-panel-filters>
     <fd-panel-body>
         <fd-loading-spinner *ngIf="loading$ | async" [loading]="true"></fd-loading-spinner>
-        <fd-action-bar *ngIf="task$ | async as task">
+        <fd-action-bar *ngIf="task">
             <fd-action-bar-header>
                 <fd-action-bar-title>{{task.taskTitle}}</fd-action-bar-title>
                 <fd-action-bar-description>
@@ -23,13 +23,13 @@
                             <!-- <ng-container i18n="@@dueOn">Due on</ng-container> -->
                             <span>{{translatedTexts?.dueOn}} </span>
                             <span>
-                                {{(task.completionDeadLine)?.seconds | msToSec | date:'medium'}}
+                                {{(task.completionDeadLine)?.seconds | secToMs | date:'medium'}}
                             </span>
                         </fd-action-bar-description>
                         <fd-action-bar-description class="sapMOHAttrRow">
                             <!-- <ng-container i18n="@@createdOn">Created on</ng-container> -->
                             <span>{{translatedTexts?.createdOn}} </span>
-                            {{(task.createdOn)?.seconds | msToSec | date:'medium'}}
+                            {{(task.createdOn)?.seconds | secToMs | date:'medium'}}
                         </fd-action-bar-description>
                     </div>
                 </fd-action-bar-description>
@@ -45,7 +45,8 @@
             <fd-tab id="infoTab" #infoTab [title]="translatedTexts?.info">
                 <app-info></app-info>
             </fd-tab>
-            <fd-tab id="commentsTab" i18n-title="@@comments" [title]="translatedTexts?.comments">
+            <fd-tab id="commentsTab" i18n-title="@@comments" [title]="translatedTexts?.comments"
+                [disabled]="(activeTabs$ | async)['commentsTab']">
                 <ng-container>
                     <fd-loading-spinner *ngIf="commentLoading$ | async else comments" [loading]="true">
                     </fd-loading-spinner>
@@ -54,9 +55,14 @@
                     </ng-template>
                 </ng-container>
             </fd-tab>
-            <fd-tab id="attachmentsTab" i18n-title="@@attachments" [title]="translatedTexts?.attachments">
-                <ng-container *ngIf="loadAttachmentsTab">
-                    <app-attachments></app-attachments>
+            <fd-tab id="attachmentsTab" i18n-title="@@attachments" [title]="translatedTexts?.attachments"
+                [disabled]="(activeTabs$ | async)['attachmentsTab']">
+                <ng-container>
+                    <fd-loading-spinner *ngIf="attachmentsLoading$ | async else attachments" [loading]="true">
+                    </fd-loading-spinner>
+                    <ng-template #attachments>
+                        <app-attachments></app-attachments>
+                    </ng-template>
                 </ng-container>
             </fd-tab>
         </fd-tab-list>

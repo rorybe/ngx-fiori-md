@@ -3,8 +3,7 @@ import { TaskService } from '../services/task.service';
 import { TranslateService } from '../services/translate.service';
 import { map } from 'rxjs/operators';
 import { BehaviorSubject } from 'rxjs';
-
-import { ITask } from './types';
+import { Task } from '../models/Task.model';
 
 @Component({
   selector: 'app-master',
@@ -15,8 +14,8 @@ export class MasterComponent {
 
   loading$ = new BehaviorSubject<boolean>(true);
   searchTerm = '';
-  taskList: ITask[];
-  taskListSearchResults: ITask[] = [];
+  taskList: Task[];
+  taskListSearchResults: Task[] = [];
   sorted = false;
 
   taskList$ = this.taskService.taskList$.pipe(map(tl => {

@@ -11,7 +11,7 @@
             <p>{{ task.createdByName }}</p>
           </div>
           <div class="sapMObjectAttributeDiv">
-            <p>{{translatedTexts?.dueOn}} {{(task.completionDeadLine)?.seconds | msToSec | date:'medium'}}</p>
+            <p>{{translatedTexts?.dueOn}} {{(task.completionDeadLine)?.seconds | secToMs | date:'medium'}}</p>
           </div>
           <div class="sapMObjectAttributeDiv">
             <p>{{translatedTexts?.onBehalf}} {{ task.user }}</p>
@@ -25,7 +25,7 @@
           </div>
           <div class="sapMObjStatus">
             <span appTaskduecolour dir="ltr">
-              {{(task.completionDeadLine)?.seconds | msToSec | taskduetext:now }}
+              {{(task.completionDeadLine)?.seconds | secToMs | taskduetext:now }}
             </span>
           </div>
         </div>
