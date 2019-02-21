@@ -48,11 +48,11 @@ export class DetailComponent implements OnInit, OnDestroy {
     });
   }
 
-  get translatedTexts() {
+  get translatedTexts(): Promise<{}> {
     return this.translateService.i18n;
   }
 
-  onTabChange() {
+  onTabChange(): void {
     const tabId = this.tabList &&
       this.tabList.selected &&
       this.tabList.selected.id
@@ -72,7 +72,7 @@ export class DetailComponent implements OnInit, OnDestroy {
     }
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     this.finalise$.next(true);
     this.finalise$.complete();
   }

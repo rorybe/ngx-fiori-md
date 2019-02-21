@@ -17,7 +17,7 @@ export class HeaderComponent {
         private taskService: TaskService) {
     }
 
-    get translatedTexts() {
+    get translatedTexts(): Promise<{}> {
         return this.translate.i18n;
     }
 

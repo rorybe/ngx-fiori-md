@@ -32,17 +32,17 @@ export class MasterComponent implements OnDestroy {
     private translate: TranslateService
   ) { }
 
-  onSearchModelChange() {
+  onSearchModelChange(): void {
     this.taskListSearchResults = this.taskList.filter(task =>
       task.taskTitle.toLowerCase().includes(this.searchTerm.toLowerCase())
     );
   }
 
-  get translatedTexts() {
+  get translatedTexts(): Promise<{}> {
     return this.translate.i18n;
   }
 
-  onSort() {
+  onSort(): boolean | void {
     if (!this.sorted) {
       this.taskListSearchResults = this.taskList.sort((a, b) =>
         a.completionDeadLine.seconds -

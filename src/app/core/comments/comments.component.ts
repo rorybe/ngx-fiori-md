@@ -17,7 +17,7 @@ export class CommentsComponent {
     private translateService: TranslateService,
     private commentService: CommentService) { }
 
-  get translatedTexts() {
+  get translatedTexts(): Promise<{}> {
     return this.translateService.i18n;
   }
 }

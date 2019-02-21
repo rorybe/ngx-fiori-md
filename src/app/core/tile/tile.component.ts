@@ -25,7 +25,7 @@ export class TileComponent implements OnInit {
         this.taskService.taskId$.next(this.router.url.split('/')[2]);
     }
 
-    setSelectedTaskId(taskId: string) {
+    setSelectedTaskId(taskId: string): Promise<boolean> {
         this.taskService.taskId$.next(taskId);
         this.taskService.reset();
         // An example to show the Page Not Found component;
@@ -39,7 +39,7 @@ export class TileComponent implements OnInit {
         return taskId === this.selectedTaskId.value;
     }
 
-    get translatedTexts() {
+    get translatedTexts(): Promise<{}> {
         return this.translate.i18n;
     }
 }

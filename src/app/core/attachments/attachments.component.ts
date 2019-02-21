@@ -13,7 +13,7 @@ export class AttachmentsComponent {
 
   constructor(private translateService: TranslateService) { }
 
-  get translatedTexts() {
+  get translatedTexts(): Promise<{}> {
     return this.translateService.i18n;
   }
 

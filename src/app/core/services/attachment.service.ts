@@ -13,7 +13,7 @@ export class AttachmentService {
     load() {
     }
 
-    unsubscribeService() {
+    unsubscribeService(): void {
         this.serviceFinalise.next(true);
         this.serviceFinalise.complete();
     }

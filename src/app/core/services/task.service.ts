@@ -23,7 +23,6 @@ export class TaskService {
     commentLoading$ = this.commentService.loading$;
     serviceFinalise: Subject<boolean> = new Subject();
 
-
     constructor(
         private db: AngularFirestore,
         private infoService: InfoService,
@@ -34,7 +33,7 @@ export class TaskService {
 
     serviceArray = [this.infoService, this.commentService, this.attachmentService /* add services here */];
 
-    load(taskId: string, tabIndex: number) {
+    load(taskId: string, tabIndex: number): void {
         if (!taskId) {
             return;
         }
@@ -67,7 +66,7 @@ export class TaskService {
             })));
     }
 
-    updateDisabledTabs(taskName: TaskName) {
+    updateDisabledTabs(taskName: TaskName): void {
         const tabs = {
             infoTab: !InfoTabTasks.includes(taskName),
             commentsTab: !true,
@@ -76,13 +75,13 @@ export class TaskService {
         this.activeTabs$.next(tabs);
     }
 
-    reset() {
+    reset(): void {
         // reset loading flags, reset data
         this.taskDetails$.next(undefined);
         this.loading$.next(true);
     }
 
-    unsubscribeServices() {
+    unsubscribeServices(): void {
         this.serviceFinalise.next(true);
         this.serviceFinalise.complete();
         this.serviceArray.forEach(svc => svc.unsubscribeService());

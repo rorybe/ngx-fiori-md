@@ -43,13 +43,13 @@ export class InfoService {
         )));
   }
 
-  reset() {
+  reset(): void {
     // reset loading flags, reset data
     this.info$.next(undefined);
     this.loading$.next(true);
   }
 
-  unsubscribeService() {
+  unsubscribeService(): void {
     this.serviceFinalise.next(true);
     this.serviceFinalise.complete();
   }
