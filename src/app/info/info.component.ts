@@ -8,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class InfoComponent implements OnInit {
 
   // loading$ = this.infoService.loading$;
+  tableRows;
 
   constructor() { }
 

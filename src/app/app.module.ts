@@ -11,7 +11,6 @@ import { DetailModule } from './detail/detail.module';
 import { PageNotFoundComponent } from './pagenotfound/pagenotfound.component';
 import { TaskService } from './services/task.service';
 import { TaskDueTextPipe } from './pipes/taskduetext.pipe';
-import { MsToSecPipe } from './shared/pipes/mstoSec.pipe';
 import { TranslateService } from './services/translate.service';
 import { TileComponent } from './tile/tile.component';
 import { TaskprioritycolourDirective } from './directives/taskprioritycolour.directive';

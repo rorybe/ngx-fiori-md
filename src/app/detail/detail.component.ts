@@ -3,8 +3,7 @@ import { TaskService } from '../services/task.service';
 import { Subject, BehaviorSubject, combineLatest, forkJoin } from 'rxjs';
 import { TranslateService } from '../services/translate.service';
 import { takeUntil } from 'rxjs/operators';
-import { TabId, ActiveTab } from '../models/TabId';
-import { TaskName } from '../models/TaskName';
+import { TabId } from '../models/TabId';
 import { Task } from '../models/Task.model';
 
 @Component({
@@ -58,54 +57,19 @@ export class DetailComponent implements OnInit, OnDestroy {
       this.tabList.selected.id
       ? this.tabList.selected.id : undefined;
     switch (tabId) {
-      case 'infoTab':
+      case TabId.infoTab:
         this.tabIndex$.next(0);
         break;
-      case 'commentsTab':
+      case TabId.commentsTab:
         this.tabIndex$.next(1);
         break;
-      case 'attachmentsTab':
+      case TabId.attachmentsTab:
         this.tabIndex$.next(2);
         break;
       default:
         this.tabIndex$.next(0);
     }
   }
-
-  // activateTabs(task) {
-  //   if (!task || !this.tabList) {
-  //     return;
-  //   }
-  //   const tabEls = this.tabList.tabs.toArray();
-  //   tabEls.forEach(tab => tab.disabled = undefined);
-  //   switch (task.taskDefinitionName) {
-  //     case TaskName.relPurchaseOrder:
-
-  //       break;
-  //     case TaskName.apprLeaveReq:
-
-  //       break;
-  //     default:
-  //     case TaskName.apprCredLimit:
-  //       tabEls.forEach(tab => {
-  //         if (tab.id === TabId.attachmentsTab) {
-  //           debugger;
-  //           tab.disabled = true;
-  //         }
-  //       });
-  //       break;
-  //     case TaskName.apprCredLimit:
-
-  //       break;
-  //     case TaskName.salesOrdAppr:
-
-  //       break;
-  //     case TaskName.overTimeAppr:
-
-  //       break;
-  //   }
-  // }
-
 
   ngOnDestroy() {
     this.finalise$.next(true);
