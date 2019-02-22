@@ -66,5 +66,9 @@ fd-panel {
     ::ng-deep app-detail>.fd-panel>div>fd-panel-body {
         left: 0;
     }
+
+    ::ng-deep app-detail .fd-panel__footer {
+        width: 100%;
+    }
 }
 

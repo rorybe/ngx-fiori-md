@@ -36,10 +36,12 @@ export class DetailComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
-    this.route.paramMap.pipe(map(p => p.get('taskId'))).subscribe(taskId => {
-      this.taskService.taskId$.next(taskId);
-      this.taskService.showMaster$.next(false);
-    });
+    this.route.paramMap.pipe(map(p => p.get('taskId')))
+      .pipe(takeUntil(this.finalise$))
+      .subscribe(taskId => {
+        this.taskService.taskId$.next(taskId);
+        this.taskService.showMaster$.next(false);
+      });
 
     this.onTabChange();
 

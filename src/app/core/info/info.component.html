@@ -17,20 +17,22 @@
             </ng-container>
         </div>
         <ng-container *ngIf="(tableItems$ | async); let tableItems">
-            <fd-table *ngIf="tableItems.length>0">
-                <fd-table-header>
-                    <th *ngFor="let key of Object.keys(tableItems[0])">{{key}}</th>
-                </fd-table-header>
-                <fd-table-body>
-                    <ng-container *ngFor="let row of tableItems">
-                        <tr>
-                            <ng-container *ngFor="let key of Object.keys(row)">
-                                <td>{{(row[key]?.seconds | secToMs | date:'fullDate') || row[key]}}</td>
-                            </ng-container>
-                        </tr>
-                    </ng-container>
-                </fd-table-body>
-            </fd-table>
+            <div *ngIf="tableItems.length>0" class="infoTblContainer">
+                <fd-table>
+                    <fd-table-header>
+                        <th *ngFor="let key of Object.keys(tableItems[0])">{{key}}</th>
+                    </fd-table-header>
+                    <fd-table-body>
+                        <ng-container *ngFor="let row of tableItems">
+                            <tr>
+                                <ng-container *ngFor="let key of Object.keys(row)">
+                                    <td>{{(row[key]?.seconds | secToMs | date:'fullDate') || row[key]}}</td>
+                                </ng-container>
+                            </tr>
+                        </ng-container>
+                    </fd-table-body>
+                </fd-table>
+            </div>
         </ng-container>
     </fd-panel-body>
 </fd-panel>
