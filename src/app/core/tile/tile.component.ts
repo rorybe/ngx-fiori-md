@@ -22,12 +22,13 @@ export class TileComponent implements OnInit {
 
     ngOnInit() {
         // @TODO fix route
-        this.taskService.taskId$.next(this.router.url.split('/')[2]);
+        // this.taskService.taskId$.next(this.router.url.split('/')[2]);
     }
 
     setSelectedTaskId(taskId: string): Promise<boolean> {
         this.taskService.taskId$.next(taskId);
         this.taskService.reset();
+        this.taskService.showMaster$.next(false);
         // An example to show the Page Not Found component;
         if (taskId === 'yJHX8Utr4QFygHNcDfOL') {
             return this.router.navigate(['notfound']);

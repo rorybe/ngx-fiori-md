@@ -5,6 +5,7 @@ html {
 
 app-detail, app-master {
     height: calc(100vh - 6.5rem);
+    width: 100vw;
 }
 
 app-master {
@@ -55,7 +56,7 @@ div.fd-panel__footer {
 }
 
 .fd-tabs {
-    background-color: inherit !important;
+    background-color: inherit; // !important;
 }
 
 .masterPanelBody>div {
@@ -89,7 +90,7 @@ fd-tile-title>.fd-tile__title {
 
 .barMiddle {
     text-align: center;
-    height: 2.5rem !important;
+    height: 2.5rem; // !important;
     font-size: large;
 }
 
@@ -112,3 +113,24 @@ ul.fd-tabs {
 .detailTabBody>.fd-panel__body {
     padding: 24px;
 }
+
+.hideView {
+    display: none;
+}
+
+
+// @media screen and (max-width: 767px) {
+    app-detail .fd-panel__filters {
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .barLeft {
+        height: 2.5rem;
+        position: relative;
+        top: -7px;
+    }
+// }

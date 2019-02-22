@@ -2,9 +2,10 @@ import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { TaskService } from '../services/task.service';
 import { Subject, BehaviorSubject, combineLatest } from 'rxjs';
 import { TranslateService } from '../services/translate.service';
-import { takeUntil } from 'rxjs/operators';
+import { takeUntil, map } from 'rxjs/operators';
 import { TabId } from '../../models/TabId.model';
 import { Task } from '../../models/Task.model';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-detail',
@@ -23,15 +24,22 @@ export class DetailComponent implements OnInit, OnDestroy {
   tabIndex$ = new BehaviorSubject<number>(null);
   finalise$: Subject<boolean> = new Subject();
 
+  showMaster$ = this.taskService.showMaster$;
+
   loadCommentsTab = false;
   loadAttachmentsTab = false;
 
   constructor(
     private taskService: TaskService,
     private translateService: TranslateService,
+    private route: ActivatedRoute
   ) { }
 
   ngOnInit() {
+    this.route.paramMap.pipe(map(p => p.get('taskId'))).subscribe(taskId =>
+      this.taskService.taskId$.next(taskId)
+    );
+
     this.onTabChange();
 
     combineLatest(this.taskService.taskId$, this.tabIndex$).pipe(
