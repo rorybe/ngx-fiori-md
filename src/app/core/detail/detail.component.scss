@@ -62,7 +62,9 @@ fd-panel {
     left: 0;
 }
 
-// @media screen and (max-width: 767px) {
-
-// }
+@media screen and (max-width: 767px) {
+    ::ng-deep app-detail>.fd-panel>div>fd-panel-body {
+        left: 0;
+    }
+}
 

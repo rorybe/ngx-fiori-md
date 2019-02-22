@@ -5,14 +5,7 @@ import { PageNotFoundComponent } from './shared/pagenotfound/pagenotfound.compon
 import { MasterComponent } from './core/master/master.component';
 
 const routes: Routes = [
-  {
-    path: 'detail/:taskId', component: MasterComponent, children: [
-      {
-        path: '',
-        component: DetailComponent
-      }
-    ]
-  },
+  { path: 'detail/:taskId', component: DetailComponent },
   { path: 'notfound', component: PageNotFoundComponent },
   { path: '', redirectTo: '/', pathMatch: 'full' },
   { path: '**', redirectTo: '/' }

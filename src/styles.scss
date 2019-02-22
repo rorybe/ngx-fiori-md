@@ -5,7 +5,7 @@ html {
 
 app-detail, app-master {
     height: calc(100vh - 6.5rem);
-    width: 100vw;
+    // width: 100vw;
 }
 
 app-master {
@@ -132,5 +132,9 @@ ul.fd-tabs {
         height: 2.5rem;
         position: relative;
         top: -7px;
+    }
+
+    .hide {
+        display: none;
     }
 // }
