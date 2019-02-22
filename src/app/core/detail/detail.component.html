@@ -1,5 +1,10 @@
 <fd-panel>
     <fd-panel-filters>
+        <div class="barLeft">
+            <ng-container *ngIf="task">
+                <button fd-button [fdType]="'standard'" [options]="'light'" [glyph]="'nav-back'" [size]="'l'"></button>
+            </ng-container>
+        </div>
         <div class="barMiddle">
             <ng-container *ngIf="task">
                 <span>{{task.taskDefinitionName}} </span>
@@ -8,6 +13,7 @@
                 </fd-inline-help>
             </ng-container>
         </div>
+        <div class="barRight"></div>
     </fd-panel-filters>
     <fd-panel-body>
         <fd-loading-spinner *ngIf="loading$ | async" [loading]="true"></fd-loading-spinner>

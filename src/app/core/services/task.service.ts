@@ -23,6 +23,8 @@ export class TaskService {
     commentLoading$ = this.commentService.loading$;
     serviceFinalise: Subject<boolean> = new Subject();
 
+    showMaster$ = new BehaviorSubject<boolean>(true);
+
     constructor(
         private db: AngularFirestore,
         private infoService: InfoService,
