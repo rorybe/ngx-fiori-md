@@ -114,27 +114,30 @@ ul.fd-tabs {
     padding: 24px;
 }
 
-.hideView {
+app-detail .fd-panel__filters {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.barLeft>button {
     display: none;
 }
 
-
-// @media screen and (max-width: 767px) {
-    app-detail .fd-panel__filters {
-        display: flex;
-        flex-wrap: nowrap;
-        justify-content: space-between;
-        padding-left: 0;
-        padding-right: 0;
-    }
-
+@media screen and (max-width: 767px) {
     .barLeft {
         height: 2.5rem;
         position: relative;
         top: -7px;
     }
 
+    .barLeft>button {
+        display: initial;
+    }
+
     .hide {
         display: none;
     }
-// }
+}
