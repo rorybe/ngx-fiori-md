@@ -36,9 +36,10 @@ export class DetailComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
-    this.route.paramMap.pipe(map(p => p.get('taskId'))).subscribe(taskId =>
-      this.taskService.taskId$.next(taskId)
-    );
+    this.route.paramMap.pipe(map(p => p.get('taskId'))).subscribe(taskId => {
+      this.taskService.taskId$.next(taskId);
+      this.taskService.showMaster$.next(false);
+    });
 
     this.onTabChange();
 
@@ -58,6 +59,10 @@ export class DetailComponent implements OnInit, OnDestroy {
 
   get translatedTexts(): Promise<{}> {
     return this.translateService.i18n;
+  }
+
+  onNavBack() {
+    this.showMaster$.next(true);
   }
 
   onTabChange(): void {

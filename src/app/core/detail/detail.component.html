@@ -1,8 +1,10 @@
-<fd-panel>
+<fd-panel [ngClass]="(showMaster$ | async) ? 'hide' : ''">
     <fd-panel-filters>
         <div class="barLeft">
             <ng-container *ngIf="task">
-                <button fd-button [fdType]="'standard'" [options]="'light'" [glyph]="'nav-back'" [size]="'l'"></button>
+                <button fd-button [fdType]="'standard'" [options]="'light'" [glyph]="'nav-back'" [size]="'l'"
+                    (click)="onNavBack()">
+                </button>
             </ng-container>
         </div>
         <div class="barMiddle">
