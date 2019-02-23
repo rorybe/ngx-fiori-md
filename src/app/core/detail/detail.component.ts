@@ -5,7 +5,7 @@ import { TranslateService } from '../services/translate.service';
 import { takeUntil, map } from 'rxjs/operators';
 import { TabId } from '../../models/TabId.model';
 import { Task } from '../../models/Task.model';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-detail',
@@ -30,6 +30,7 @@ export class DetailComponent implements OnInit, OnDestroy {
   loadAttachmentsTab = false;
 
   constructor(
+    private router: Router,
     private taskService: TaskService,
     private translateService: TranslateService,
     private route: ActivatedRoute
@@ -64,6 +65,7 @@ export class DetailComponent implements OnInit, OnDestroy {
   }
 
   onNavBack() {
+    this.router.navigate(['']);
     this.showMaster$.next(true);
   }
 

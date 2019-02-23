@@ -1,27 +1,55 @@
-# NgFioriMd
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.1.
+![desk-md](./screenshots/desk-info.png)
+![mob-det-com](./screenshots/mob-det-com.png)
+![mob-mas](./screenshots/mob-mas.png)
+
+# Fundamental NGX Master-Detail Demo
+
+This application was built using Angular components that are a part of the [fundamental-ngx](https://sap.github.io/fundamental/) library. For quick and easy access to mockdata it connects to a read-only [Google Cloud Firestore](https://firebase.google.com/) via [Angular Fire](https://github.com/angular/angularfire2). The app layout is based on the popular SAP Fiori My Inbox application.
+
+This app was intended to provide a customizable example of what the new Fundamental libraries are capable of.
+
+This demo is currently hosted [here](https://fiori-ngx-master-detail.firebaseapp.com).
+
+## Roadmap
+
+As this was prototyped in a very short timeframe, there are a number of aspects that will need to be addressed going forward:
+* **Testing**
+* Improve responsiveness (compact / cozy equivalent padding, margin, etc)
+* Inclusion of more components (e.g. modals, forms)
+* Implement a base service and inherit
+* Replace Firestore OData support ()
+* Mockserver (I started setting up a rudimentary mockserver in the `feat/firestore-mockserver` branch)
+
+The app was based on library components available in early February 2019, and unfortunately the downloadable API did not feature the `fd-page` information, so I adapted the `fd-panel` component.
+
+## Installation
+
+To download and use this demo, you will first need to install [NPM](https://www.npmjs.com/get-npm).
+
+After downloading / cloning this project, on the root directory run:
+```
+npm i
+``` 
 
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
 ## Build
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
 
-## Running unit tests
+## Contributions
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
-## Running end-to-end tests
+## Acknowledgments
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+Thank you to Matt Sloane, Mehdi Atefi and [Lachlan Miller](https://github.com/lmiller1990) for your contributions to v1!
 
-## Further help
+## License
+[MIT](https://choosealicense.com/licenses/mit/)
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+
+

@@ -14,7 +14,7 @@ export class MasterComponent implements OnDestroy {
 
     loading$ = new BehaviorSubject<boolean>(true);
 
-    showMaster$ = this.taskService.showMaster$
+    showMaster$ = this.taskService.showMaster$;
 
     searchTerm = '';
     taskList: Task[];
