@@ -1,7 +1,8 @@
-
+<!-- 
 ![desk-md](./screenshots/desk-info.png)
 ![mob-det-com](./screenshots/mob-det-com.png)
-![mob-mas](./screenshots/mob-mas.png)
+![mob-mas](./screenshots/mob-mas.png) -->
+![mob-mas](./screenshots/desk and mob.png)
 
 # Fundamental NGX Master-Detail Demo
 
