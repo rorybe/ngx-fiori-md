@@ -7,6 +7,9 @@ import { TabId } from '../../models/TabId.model';
 import { Task } from '../../models/Task.model';
 import { ActivatedRoute, Router } from '@angular/router';
 
+/**
+ * Detail view component
+ */
 @Component({
   selector: 'app-detail',
   templateUrl: './detail.component.html',
@@ -15,18 +18,41 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class DetailComponent implements OnInit, OnDestroy {
   @ViewChild('tabList') tabList;
 
+  
   task$ = this.taskService.taskDetails$;
   task: Task;
+  /**
+   * Detail view loading status
+   */
   loading$ = this.taskService.loading$;
+  /**
+   * Information tab loading status
+   */
   infoLoading$ = this.taskService.infoLoading$;
+  /**
+   * Comment tab loading status
+   */
   commentLoading$ = this.taskService.commentLoading$;
+  /**
+   * Active tabs in the context of the selected task
+   */
   activeTabs$ = this.taskService.activeTabs$;
+  /**
+   * Keeps track of the index of the selected tab
+   */
   tabIndex$ = new BehaviorSubject<number>(null);
   finalise$: Subject<boolean> = new Subject();
-
+  /**
+   * Show / hide master (used in responsive views)
+   */
   showMaster$ = this.taskService.showMaster$;
-
+  /**
+   * Lazy comments tab loading indicator
+   */
   loadCommentsTab = false;
+  /**
+   * Lazy attachments tab loading indicator
+   */
   loadAttachmentsTab = false;
 
   constructor(
@@ -36,7 +62,10 @@ export class DetailComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute
   ) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
+    // If detail/:taskId route is matched, set the current
+    // task ID (navigate to detail page by
+    // hiding the master in responsive views)
     this.route.paramMap.pipe(map(p => p.get('taskId')))
       .pipe(takeUntil(this.finalise$))
       .subscribe(taskId => {
@@ -46,6 +75,8 @@ export class DetailComponent implements OnInit, OnDestroy {
 
     this.onTabChange();
 
+    // Once we have a task ID and/or a selected tab,
+    // load the task details
     combineLatest(this.taskService.taskId$, this.tabIndex$).pipe(
       takeUntil(this.finalise$))
       .subscribe(([tId, tInd]) => {
@@ -60,15 +91,24 @@ export class DetailComponent implements OnInit, OnDestroy {
     });
   }
 
-  get translatedTexts(): Promise<{}> {
+  /**
+   * Returns translatable texts for current language (default English)
+   */
+  get translatedTexts() {
     return this.translateService.i18n;
   }
 
-  onNavBack() {
+  /**
+   * Navigate to root URL (show master if in responsive mode)
+   */
+  onNavBack(): void {
     this.router.navigate(['']);
     this.showMaster$.next(true);
   }
 
+  /**
+   * Event listener for tab changes
+   */
   onTabChange(): void {
     const tabId = this.tabList &&
       this.tabList.selected &&

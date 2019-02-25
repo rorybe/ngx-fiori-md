@@ -2,19 +2,25 @@ import { Component } from '@angular/core';
 import { TranslateService } from '../services/translate.service';
 import { BehaviorSubject } from 'rxjs';
 
+/**
+ * Attachments tab component in the Detail view
+ */
 @Component({
-  selector: 'app-attachments',
-  templateUrl: './attachments.component.html',
-  styleUrls: ['./attachments.component.scss']
+    selector: 'app-attachments',
+    templateUrl: './attachments.component.html',
+    styleUrls: ['./attachments.component.scss']
 })
 export class AttachmentsComponent {
 
-  loading$ = new BehaviorSubject<boolean>(true);
+    loading$ = new BehaviorSubject<boolean>(true);
 
-  constructor(private translateService: TranslateService) { }
+    constructor(private translateService: TranslateService) { }
 
-  get translatedTexts() {
-    return this.translateService.i18n;
-  }
+    /**
+     * Returns translatable texts for current language (default English)
+     */
+    get translatedTexts() {
+        return this.translateService.i18n;
+    }
 
 }
