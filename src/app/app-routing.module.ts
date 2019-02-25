@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { DetailComponent } from './core/detail/detail.component';
 import { PageNotFoundComponent } from './shared/pagenotfound/pagenotfound.component';
-import { MasterComponent } from './core/master/master.component';
 
 const routes: Routes = [
   { path: 'detail/:taskId', component: DetailComponent },
