@@ -7,8 +7,6 @@ import { TranslateService } from './core/services/translate.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'ng-fiori-md';
-
   constructor(private translate: TranslateService) {
     translate.use('en');
   }
