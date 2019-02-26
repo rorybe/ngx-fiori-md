@@ -1,7 +1,3 @@
-<!-- 
-![desk-md](./screenshots/desk-info.png)
-![mob-det-com](./screenshots/mob-det-com.png)
-![mob-mas](./screenshots/mob-mas.png) -->
 ![mob-mas](./screenshots/deskandmob.png)
 
 # Fundamental NGX Master-Detail Demo
@@ -19,7 +15,7 @@ As this was prototyped in a very short timeframe, there are a number of aspects 
 * Improve responsiveness (compact / cozy equivalent padding, margin, etc)
 * Inclusion of more components (e.g. modals, forms)
 * Implement a base service and inherit
-* Replace Firestore OData support ()
+* Replace Firestore with OData support???
 * Mockserver (I started setting up a rudimentary mockserver in the `feat/firestore-mockserver` branch)
 
 The app was based on library components available in early February 2019, and unfortunately the downloadable API did not feature the `fd-page` information, so I adapted the `fd-panel` component.
@@ -47,7 +43,7 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 
 ## Acknowledgments
 
-Thank you to Matt Sloane, Mehdi Atefi and [Lachlan Miller](https://github.com/lmiller1990) for your contributions to v1!
+Thank you to Matt Sloane, Mehdi Atefi and [Lachlan Miller](https://github.com/lmiller1990) for your contributions to v0.1!
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
