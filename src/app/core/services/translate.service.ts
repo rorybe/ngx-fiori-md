@@ -3,7 +3,9 @@ import { HttpClient } from '@angular/common/http';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 
-@Injectable()
+@Injectable({
+    providedIn: 'root'
+})
 export class TranslateService {
     i18n: any = {};
     lang = '';

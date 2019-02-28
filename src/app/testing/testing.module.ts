@@ -49,6 +49,8 @@ import { TaskDueTextMockPipe } from './pipes/taskduetext.mock.pipe';
 import { IconMockComponent } from './components/icon.mock.component';
 import { TileTitleMockComponent } from './components/tile-title.mock.component';
 import { SpanMockComponent } from './components/span.mock.component';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+
 
 @NgModule({
   imports: [CommonModule],
@@ -144,6 +146,7 @@ import { SpanMockComponent } from './components/span.mock.component';
     TileTitleMockComponent
   ],
   providers: [
+    HttpClientTestingModule,
     {
       provide: TranslateService,
       useClass: TranslateMockService
@@ -158,8 +161,4 @@ import { SpanMockComponent } from './components/span.mock.component';
     }
   ]
 })
-export class TestingModule {
-  constructor(injector: Injector) {
-    // BaseInjectorService.rooInjector = injector;
-  }
-}
+export class TestingModule { }

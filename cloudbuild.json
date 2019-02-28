@@ -5,6 +5,12 @@
             "args": [
                 "install"
             ]
+        },
+        {
+            "name": "gcr.io/cloud-builders/npm",
+            "args": [
+                "run headless-test"
+            ]
         }
     ]
 }
