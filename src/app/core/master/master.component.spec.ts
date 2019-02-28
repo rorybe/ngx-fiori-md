@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { MasterComponent } from './master.component';
+import { TestingModule } from 'src/app/testing/testing.module';
+import { TranslateService } from '../services/translate.service';
 
 describe('MasterComponent', () => {
   let component: MasterComponent;
@@ -8,9 +9,10 @@ describe('MasterComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ MasterComponent ]
+      imports: [TestingModule],
+      declarations: [MasterComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

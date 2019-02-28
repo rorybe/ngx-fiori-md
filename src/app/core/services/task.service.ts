@@ -9,7 +9,9 @@ import { AttachmentService } from './attachment.service';
 import { TaskName, AttachmentTabTasks, InfoTabTasks } from '../../models/TaskName';
 import { ActiveTab } from '../../models/TabId.model';
 
-@Injectable()
+@Injectable({
+    providedIn: 'root'
+})
 export class TaskService {
 
     loadCommentsTab = false;

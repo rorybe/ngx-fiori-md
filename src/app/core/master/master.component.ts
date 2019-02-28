@@ -31,8 +31,8 @@ export class MasterComponent implements OnDestroy {
     }));
 
     constructor(
-        private taskService: TaskService,
-        private translate: TranslateService
+        private translate: TranslateService,
+        private taskService: TaskService
     ) { }
 
     onSearchModelChange(): void {

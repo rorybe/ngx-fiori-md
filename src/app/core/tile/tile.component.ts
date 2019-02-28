@@ -30,7 +30,7 @@ export class TileComponent implements OnInit {
         this.taskService.reset();
         this.taskService.showMaster$.next(false);
         // An example to show the Page Not Found component;
-        if (taskId === 'yJHX8Utr4QFygHNcDfOL') {
+        if (!taskId || taskId === 'yJHX8Utr4QFygHNcDfOL') {
             return this.router.navigate(['notfound']);
         }
         this.router.navigate(['detail', taskId]);
