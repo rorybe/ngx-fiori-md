@@ -9,12 +9,6 @@
     {
       "name": "gcr.io/cloud-builders/npm",
       "args": [
-        "headless-test"
-      ]
-    },
-    {
-      "name": "gcr.io/cloud-builders/npm",
-      "args": [
         "run",
         "build"
       ]
