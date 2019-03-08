@@ -11,7 +11,6 @@ describe('TaskDueTextPipe', () => {
 
     it('create an instance', () => {
         expect(pipe).toBeTruthy();
-        expect(pipe).toBeFalsy();
     });
 
     it('should return Overdue if in the past', () => {
