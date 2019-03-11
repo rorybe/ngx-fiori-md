@@ -2,7 +2,6 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { MasterComponent } from './master.component';
 import { TestingModule } from '../../testing/testing.module';
 import { taskList } from '../../testing/mockdata/taskList.mock';
-import { Task } from 'src/app/models/Task.model';
 
 describe('MasterComponent', () => {
     let component: MasterComponent;

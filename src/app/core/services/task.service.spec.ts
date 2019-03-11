@@ -1,7 +1,6 @@
 import { TestBed } from '@angular/core/testing';
-
 import { TaskService } from './task.service';
-import { TestingModule } from 'src/app/testing/testing.module';
+import { TestingModule } from '../../testing/testing.module';
 
 describe('TaskService', () => {
   beforeEach(() => TestBed.configureTestingModule({
