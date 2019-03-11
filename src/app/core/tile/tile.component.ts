@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslateService } from '../services/translate.service';
 import { TaskService } from '../services/task.service';
