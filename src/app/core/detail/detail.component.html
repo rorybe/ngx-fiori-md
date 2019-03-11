@@ -18,62 +18,67 @@
         <div class="barRight"></div>
     </fd-panel-filters>
     <fd-panel-body>
-        <fd-loading-spinner *ngIf="loading$ | async" [loading]="true"></fd-loading-spinner>
-        <fd-action-bar *ngIf="task">
-            <fd-action-bar-header>
-                <fd-action-bar-title>{{task.taskTitle}}</fd-action-bar-title>
-                <fd-action-bar-description>
-                    <div class="sapMOHBottomRow">
-                        <fd-action-bar-description class="sapMOHAttrRow">
-                            {{task.createdByName}}
-                        </fd-action-bar-description>
-                        <fd-action-bar-description class="sapMOHAttrRow">
-                            <!-- <ng-container i18n="@@dueOn">Due on</ng-container> -->
-                            <span>{{translatedTexts?.dueOn}} </span>
-                            <span>
-                                {{(task.completionDeadLine)?.seconds | secToMs | date:'medium'}}
-                            </span>
-                        </fd-action-bar-description>
-                        <fd-action-bar-description class="sapMOHAttrRow">
-                            <!-- <ng-container i18n="@@createdOn">Created on</ng-container> -->
-                            <span>{{translatedTexts?.createdOn}} </span>
-                            {{(task.createdOn)?.seconds | secToMs | date:'medium'}}
-                        </fd-action-bar-description>
-                    </div>
-                </fd-action-bar-description>
-            </fd-action-bar-header>
-            <fd-action-bar-actions>
-                <span>{{task.user}} </span>
-                <fd-inline-help [position]="'bottom-left'">
-                    <fd-label [isStatusLabel]="true" [statusIcon]="'busy'">Busy</fd-label>
-                </fd-inline-help>
-            </fd-action-bar-actions>
-        </fd-action-bar>
-        <fd-tab-list #tabList *ngIf="!(loading$ | async)" (tabChange)="onTabChange()">
-            <fd-tab id="infoTab" #infoTab [title]="translatedTexts?.info">
-                <fd-loading-spinner *ngIf="infoLoading$ | async else info" [loading]="true">
-                </fd-loading-spinner>
-                <ng-template #info>
-                    <app-info></app-info>
-                </ng-template>
-            </fd-tab>
-            <fd-tab id="commentsTab" i18n-title="@@comments" [title]="translatedTexts?.comments"
-                [disabled]="(activeTabs$ | async)['commentsTab']">
-                <fd-loading-spinner *ngIf="commentLoading$ | async else comments" [loading]="true">
-                </fd-loading-spinner>
-                <ng-template #comments>
-                    <app-comments></app-comments>
-                </ng-template>
-            </fd-tab>
-            <fd-tab id="attachmentsTab" i18n-title="@@attachments" [title]="translatedTexts?.attachments"
-                [disabled]="(activeTabs$ | async)['attachmentsTab']">
-                <fd-loading-spinner *ngIf="attachmentsLoading$ | async else attachments" [loading]="true">
-                </fd-loading-spinner>
-                <ng-template #attachments>
-                    <app-attachments></app-attachments>
-                </ng-template>
-            </fd-tab>
-        </fd-tab-list>
+        <div *ngIf="(showNotFound$ | async); else notFound">
+            <!-- <app-pagenotfound></app-pagenotfound> -->
+        </div>
+        <ng-template #notFound>
+            <fd-loading-spinner *ngIf="loading$ | async" [loading]="true"></fd-loading-spinner>
+            <fd-action-bar *ngIf="task">
+                <fd-action-bar-header>
+                    <fd-action-bar-title>{{task.taskTitle}}</fd-action-bar-title>
+                    <fd-action-bar-description>
+                        <div class="sapMOHBottomRow">
+                            <fd-action-bar-description class="sapMOHAttrRow">
+                                {{task.createdByName}}
+                            </fd-action-bar-description>
+                            <fd-action-bar-description class="sapMOHAttrRow">
+                                <!-- <ng-container i18n="@@dueOn">Due on</ng-container> -->
+                                <span>{{translatedTexts?.dueOn}} </span>
+                                <span>
+                                    {{(task.completionDeadLine)?.seconds | secToMs | date:'medium'}}
+                                </span>
+                            </fd-action-bar-description>
+                            <fd-action-bar-description class="sapMOHAttrRow">
+                                <!-- <ng-container i18n="@@createdOn">Created on</ng-container> -->
+                                <span>{{translatedTexts?.createdOn}} </span>
+                                {{(task.createdOn)?.seconds | secToMs | date:'medium'}}
+                            </fd-action-bar-description>
+                        </div>
+                    </fd-action-bar-description>
+                </fd-action-bar-header>
+                <fd-action-bar-actions>
+                    <span>{{task.user}} </span>
+                    <fd-inline-help [position]="'bottom-left'">
+                        <fd-label [isStatusLabel]="true" [statusIcon]="'busy'">Busy</fd-label>
+                    </fd-inline-help>
+                </fd-action-bar-actions>
+            </fd-action-bar>
+            <fd-tab-list #tabList *ngIf="!(loading$ | async)" (tabChange)="onTabChange()">
+                <fd-tab id="infoTab" #infoTab [title]="translatedTexts?.info">
+                    <fd-loading-spinner *ngIf="infoLoading$ | async else info" [loading]="true">
+                    </fd-loading-spinner>
+                    <ng-template #info>
+                        <app-info></app-info>
+                    </ng-template>
+                </fd-tab>
+                <fd-tab id="commentsTab" i18n-title="@@comments" [title]="translatedTexts?.comments"
+                    [disabled]="(activeTabs$ | async)['commentsTab']">
+                    <fd-loading-spinner *ngIf="commentLoading$ | async else comments" [loading]="true">
+                    </fd-loading-spinner>
+                    <ng-template #comments>
+                        <app-comments></app-comments>
+                    </ng-template>
+                </fd-tab>
+                <fd-tab id="attachmentsTab" i18n-title="@@attachments" [title]="translatedTexts?.attachments"
+                    [disabled]="(activeTabs$ | async)['attachmentsTab']">
+                    <fd-loading-spinner *ngIf="attachmentsLoading$ | async else attachments" [loading]="true">
+                    </fd-loading-spinner>
+                    <ng-template #attachments>
+                        <app-attachments></app-attachments>
+                    </ng-template>
+                </fd-tab>
+            </fd-tab-list>
+        </ng-template>
     </fd-panel-body>
     <fd-panel-footer>
         <button class="fd-button--shell sap-icon--action"></button>

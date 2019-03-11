@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { CommentService } from './comment.service';
 import { AngularFirestore } from 'angularfire2/firestore';
-import { TestingModule } from 'src/app/testing/testing.module';
+import { TestingModule } from '../../testing/testing.module';
 
 // const FirestoreStub = {
 //   collection: (name: string) => ({

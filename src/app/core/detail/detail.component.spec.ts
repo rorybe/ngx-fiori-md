@@ -7,8 +7,7 @@ import { BehaviorSubject } from 'rxjs';
 import { TaskService } from '../services/task.service';
 
 const routes: Routes = [
-  { path: ':taskId', component: DetailComponent },
-  // { path: '**', component: }
+  { path: ':taskId', component: DetailComponent }
 ];
 
 describe('DetailComponent', () => {

@@ -1,5 +1,5 @@
 import { Directive, ElementRef, AfterViewInit } from '@angular/core';
-import { TaskStatus } from 'src/app/models/TaskStatus';
+import { TaskStatus } from '../../models/TaskStatus';
 
 @Directive({
   selector: '[appTaskduecolour]'

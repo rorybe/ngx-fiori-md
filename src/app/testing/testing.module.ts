@@ -50,6 +50,7 @@ import { IconMockComponent } from './components/icon.mock.component';
 import { TileTitleMockComponent } from './components/tile-title.mock.component';
 import { SpanMockComponent } from './components/span.mock.component';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { AppPageNotFoundMockComponent } from './components/app-pagenotfound.mock.component';
 
 
 @NgModule({
@@ -143,7 +144,8 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
     TableBodyMockComponent,
     TableMockComponent,
     IconMockComponent,
-    TileTitleMockComponent
+    TileTitleMockComponent,
+    AppPageNotFoundMockComponent
   ],
   providers: [
     HttpClientTestingModule,
