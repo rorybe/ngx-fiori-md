@@ -1,12 +1,12 @@
 {
   "name": "ng-fiori-md",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
-    "test": "ng test",
-    "headless-test": "ng test --watch=false --browsers=ChromeHeadless",
+    "test": "ng test --browsers=Chrome --watch=true",
+    "build:test": "ng test --browsers=ChromeHeadlessNoSandbox --watch=false",
     "lint": "ng lint",
     "e2e": "ng e2e",
     "compodoc": "npx compodoc -p src/tsconfig.app.json"
@@ -26,6 +26,7 @@
     "fiori-fundamentals": "^1.4.2",
     "firebase": "^5.8.2",
     "fundamental-ngx": "0.0.31",
+    "is-docker": "^1.1.0",
     "rxjs": "~6.3.3",
     "tslib": "^1.9.0",
     "zone.js": "~0.8.26"
