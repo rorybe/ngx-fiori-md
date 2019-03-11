@@ -9,7 +9,7 @@ import { Task } from '../../models/Task.model';
     templateUrl: './tile.component.html',
     styleUrls: ['./tile.component.scss']
 })
-export class TileComponent implements OnInit {
+export class TileComponent {
 
     @Input() taskListSearchResults: Task[];
     selectedTaskId = this.taskService.taskId$;
@@ -19,11 +19,6 @@ export class TileComponent implements OnInit {
         private router: Router,
         private translate: TranslateService,
         private taskService: TaskService) { }
-
-    ngOnInit() {
-        // @TODO fix route
-        // this.taskService.taskId$.next(this.router.url.split('/')[2]);
-    }
 
     setSelectedTaskId(taskId: string): Promise<boolean> {
         this.taskService.taskId$.next(taskId);
