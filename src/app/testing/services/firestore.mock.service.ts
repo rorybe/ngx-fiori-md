@@ -1,7 +1,6 @@
 import { AngularFirestore, QueryFn, AngularFirestoreCollection, AngularFirestoreDocument } from 'angularfire2/firestore';
 import { FirebaseApp, FirebaseFirestore } from 'angularfire2';
 import { Observable, of } from 'rxjs';
-
 export class FirestoreMock /* implements AngularFirestore */ {
     app: FirebaseApp;
     firestore: FirebaseFirestore;
@@ -11,7 +10,7 @@ export class FirestoreMock /* implements AngularFirestore */ {
         return this;
     }
 
-    doc<T>(path: string)/* : AngularFirestoreDocument<T> */ {
+    doc(path: string): any/* : AngularFirestoreDocument<T> */ {
         return this;
     }
 
