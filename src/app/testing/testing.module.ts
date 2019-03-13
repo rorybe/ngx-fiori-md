@@ -33,7 +33,7 @@ import { ActionBarDescriptionMockComponent } from './components/action-bar-descr
 import { ActionBarHeaderMockComponent } from './components/action-bar-header.mock.component';
 import { SecToMsMockPipe } from './pipes/secToMs.mock.pipe';
 import { LabelMockComponent } from './components/label.mock.component';
-import { AngularFirestore } from 'angularfire2/firestore';
+import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
 import { FirestoreMock } from './services/firestore.mock.service';
 import { ActionBarActionsMockComponent } from './components/action-bar-actions.mock.component';
 import { ActionBarMockComponent } from './components/action-bar.mock.component';
@@ -50,6 +50,7 @@ import { IconMockComponent } from './components/icon.mock.component';
 import { TileTitleMockComponent } from './components/tile-title.mock.component';
 import { SpanMockComponent } from './components/span.mock.component';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { FirestoreCollectionMock } from './services/firestorecollection.mock.service';
 
 
 @NgModule({
@@ -152,12 +153,12 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
       useClass: TranslateMockService
     },
     {
-      provide: TaskService,
-      useClass: TaskMockService
-    },
-    {
       provide: AngularFirestore,
       useClass: FirestoreMock
+    },
+    {
+      provide: AngularFirestoreCollection,
+      useClass: FirestoreCollectionMock
     }
   ]
 })
