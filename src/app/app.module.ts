@@ -8,7 +8,6 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './core/header/header.component';
 import { MasterComponent } from './core/master/master.component';
 import { DetailModule } from './core/detail/detail.module';
-import { PageNotFoundComponent } from './shared/pagenotfound/pagenotfound.component';
 import { TaskService } from './core/services/task.service';
 import { TaskDueTextPipe } from './shared/pipes/taskduetext.pipe';
 import { TranslateService } from './core/services/translate.service';
@@ -20,30 +19,26 @@ import { SharedModule } from './shared/shared.module';
 
 export const firebaseConfig = environment.firebase;
 @NgModule({
-  imports: [
-    BrowserModule,
-    DetailModule,
-
-    AngularFireModule.initializeApp(firebaseConfig),
-    AngularFirestoreModule,
-    AppRoutingModule,
-    SharedModule,
-    FundamentalNgxModule
-  ],
-  declarations: [
-    TaskDueTextPipe,
-    TaskprioritycolourDirective,
-    AppComponent,
-    MasterComponent,
-    TileComponent,
-    HeaderComponent,
-    PageNotFoundComponent,
-    TaskduecolourDirective,
-  ],
-  exports: [
-
-  ],
-  providers: [TranslateService, TaskService],
-  bootstrap: [AppComponent]
+    imports: [
+        BrowserModule,
+        DetailModule,
+        AngularFireModule.initializeApp(firebaseConfig),
+        AngularFirestoreModule,
+        AppRoutingModule,
+        SharedModule,
+        FundamentalNgxModule
+    ],
+    declarations: [
+        TaskDueTextPipe,
+        TaskprioritycolourDirective,
+        AppComponent,
+        MasterComponent,
+        TileComponent,
+        HeaderComponent,
+        TaskduecolourDirective,
+    ],
+    exports: [],
+    providers: [TranslateService, TaskService],
+    bootstrap: [AppComponent]
 })
 export class AppModule { }

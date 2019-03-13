@@ -5,6 +5,7 @@ import { CommentsComponent } from '../comments/comments.component';
 import { AttachmentsComponent } from '../attachments/attachments.component';
 import { InfoComponent } from '../info/info.component';
 import { SharedModule } from '../../shared/shared.module';
+import { PageNotFoundComponent } from '../../shared/pagenotfound/pagenotfound.component';
 
 @NgModule({
   imports: [
@@ -15,7 +16,8 @@ import { SharedModule } from '../../shared/shared.module';
     DetailComponent,
     CommentsComponent,
     AttachmentsComponent,
-    InfoComponent
+    InfoComponent,
+    PageNotFoundComponent
   ]
 })
 export class DetailModule { }

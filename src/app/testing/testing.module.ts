@@ -51,7 +51,7 @@ import { TileTitleMockComponent } from './components/tile-title.mock.component';
 import { SpanMockComponent } from './components/span.mock.component';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { FirestoreCollectionMock } from './services/firestorecollection.mock.service';
-
+import { AppPageNotFoundMockComponent } from './components/app-pagenotfound.mock.component';
 
 @NgModule({
   imports: [CommonModule],
@@ -144,7 +144,8 @@ import { FirestoreCollectionMock } from './services/firestorecollection.mock.ser
     TableBodyMockComponent,
     TableMockComponent,
     IconMockComponent,
-    TileTitleMockComponent
+    TileTitleMockComponent,
+    AppPageNotFoundMockComponent
   ],
   providers: [
     HttpClientTestingModule,
