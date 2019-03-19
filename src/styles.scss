@@ -3,45 +3,20 @@ html {
     overflow: hidden;
 }
 
-app-detail, app-master {
-    height: calc(100vh - 6.5rem);
-    // width: 100vw;
+app-detail {
+    .fd-panel__filters {
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+        padding-left: 0;
+        padding-right: 0;
+        box-shadow: inset 0 -0.0625rem #d1e0ee;
+        padding-bottom: 1px;
+    }
 }
 
-app-master {
-    float: left;
-}
-
-app-detail>.fd-panel {
-    width: 100%;
-}
-
-app-detail .fd-panel__body {
+div.fd-panel__body {
     padding: 0;
-}
-
-app-detail .fd-panel__filters {
-    box-shadow: inset 0 -0.0625rem #d1e0ee;
-    padding-bottom: 1px;
-}
-
-fd-panel .fd-panel__footer {
-    bottom: 0;
-    position: absolute;
-    background-color: #2f3c48;
-    border-top: 1px solid #475b6d;
-    color: white;
-    width: 319px;
-    box-shadow: inset 0 -0.0625rem #4f667a;
-    height: 3rem;
-    padding: 0.5rem 0 0.25rem 0;
-    z-index: 2;
-}
-
-.fd-tabs__panel.is-expanded {
-    background: white;
-    border-top: 0.125rem solid #d1e0ee;
-    border-bottom: 0.125rem solid #d1e0ee;
 }
 
 div.fd-panel__footer {
@@ -53,14 +28,21 @@ div.fd-panel__footer {
     flex-direction: row;
     display: flex;
     justify-content: flex-end;
+    width: 319px;
+    box-shadow: inset 0 -0.0625rem #4f667a;
+    height: 3rem;
+    padding: 0.5rem 0 0.25rem 0;
+    z-index: 2;
 }
 
 .fd-tabs {
-    background-color: inherit; // !important;
+    background-color: inherit;
 }
 
-.masterPanelBody>div {
-    padding: 0;
+.masterPanelBody{
+    .fd-panel__body {
+        width: 319px;
+    }
 }
 
 fd-tile-title>.fd-tile__title {
@@ -90,7 +72,7 @@ fd-tile-title>.fd-tile__title {
 
 .barMiddle {
     text-align: center;
-    height: 2.5rem; // !important;
+    height: 2.5rem;
     font-size: large;
 }
 
@@ -98,10 +80,6 @@ fd-tile-title>.fd-tile__title {
     height: 1.625rem;
     margin-top: 0.1875rem;
     margin-bottom: 0.1875rem;
-}
-
-.masterPanelBody .fd-panel__body {
-    width: 319px;
 }
 
 ul.fd-tabs {
@@ -114,29 +92,7 @@ ul.fd-tabs {
     padding: 24px;
 }
 
-app-detail .fd-panel__filters {
-    display: flex;
-    flex-wrap: nowrap;
-    justify-content: space-between;
-    padding-left: 0;
-    padding-right: 0;
-}
-
-.barLeft>button {
-    display: none;
-}
-
 @media screen and (max-width: 767px) {
-    .barLeft {
-        height: 2.5rem;
-        position: relative;
-        top: -7px;
-    }
-
-    .barLeft>button {
-        display: initial;
-    }
-
     .hide {
         display: none;
     }

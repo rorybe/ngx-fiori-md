@@ -1,6 +1,11 @@
 :host {
+    height: calc(100vh - 6.5rem);
     display: flex;
     overflow: hidden;
+
+    >.fd-panel {
+        width: 100%;
+    }
 }
 
 .content {
@@ -62,13 +67,37 @@ fd-panel {
     left: 0;
 }
 
+.barLeft>button {
+    display: none;
+}
+
+.fd-tabs__panel.is-expanded {
+    background: white;
+    border-top: 0.125rem solid #d1e0ee;
+    border-bottom: 0.125rem solid #d1e0ee;
+}
+
 @media screen and (max-width: 767px) {
     ::ng-deep app-detail>.fd-panel>div>fd-panel-body {
         left: 0;
     }
 
-    ::ng-deep app-detail .fd-panel__footer {
-        width: 100%;
+    .barLeft {
+        height: 2.5rem;
+        position: relative;
+        top: -7px;
+
+        >button {
+            display: initial;
+        }
     }
+
+    // .barLeft>button {
+    //     display: initial;
+    // }
+
+    // .hide {
+    //     display: none;
+    // }
 }
 
