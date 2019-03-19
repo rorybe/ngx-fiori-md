@@ -50,5 +50,9 @@ Thank you to Matt Sloane, Mehdi Atefi and [Lachlan Miller](https://github.com/lm
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
 
+<!--
+    Local build/deploy: gcloud builds submit --tag gcr.io/fiori-ngx-master-detail/test .
+    Server build/deploy: gcloud builds submit --config=cloudbuild.json . --project=fiori-ngx-master-detail
+-->
 
 
