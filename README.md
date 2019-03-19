@@ -2,7 +2,7 @@
 
 # Fundamental NGX Master-Detail Demo
 
-![cloud build status](https://storage.googleapis.com/fiori-ngx-master-detail.appspot.com/build/github_rorybe_ngx-fiori-md-master.svg)
+[![cloud build status](https://storage.googleapis.com/fiori-ngx-master-detail.appspot.com/build/github_rorybe_ngx-fiori-md-master.svg)](https://github.com/sbsends/cloud-build-badge)
 
 This application was built using Angular components that are a part of the [fundamental-ngx](https://sap.github.io/fundamental/) library. For quick and easy access to mockdata it connects to a read-only [Google Cloud Firestore](https://firebase.google.com/) via [Angular Fire](https://github.com/angular/angularfire2). The app layout is based on the popular SAP Fiori My Inbox application.
 
