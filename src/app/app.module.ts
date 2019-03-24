@@ -16,6 +16,7 @@ import { TaskprioritycolourDirective } from './core/directives/taskprioritycolou
 import { environment } from '../environments/environment';
 import { TaskduecolourDirective } from './core/directives/taskduecolour.directive';
 import { SharedModule } from './shared/shared.module';
+import { FirestoreSettingsToken } from '@angular/fire/firestore';
 
 export const firebaseConfig = environment.firebase;
 @NgModule({
@@ -38,7 +39,11 @@ export const firebaseConfig = environment.firebase;
         TaskduecolourDirective,
     ],
     exports: [],
-    providers: [TranslateService, TaskService],
+    providers: [
+        TranslateService,
+        TaskService,
+        { provide: FirestoreSettingsToken, useValue: {} }
+    ],
     bootstrap: [AppComponent]
 })
 export class AppModule { }
