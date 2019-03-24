@@ -5,6 +5,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { Routes, ActivatedRoute } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import { TaskService } from '../services/task.service';
+import { PageNotFoundComponent } from 'src/app/shared/pagenotfound/pagenotfound.component';
 
 const routes: Routes = [
   { path: ':taskId', component: DetailComponent }
@@ -22,7 +23,7 @@ describe('DetailComponent', () => {
         RouterTestingModule.withRoutes(routes),
         TestingModule
       ],
-      declarations: [DetailComponent]
+      declarations: [DetailComponent, PageNotFoundComponent]
     })
       .compileComponents();
   }));
