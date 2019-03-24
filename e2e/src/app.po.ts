@@ -11,10 +11,18 @@ export class AppPage {
   }
 
   getTileTaskCreatedBy(tile) {
-    return tile ? tile.element(by.css('.sapMObjectAttributeDiv p')) : undefined;
+    return tile ? tile.all(by.css('.sapMObjectAttributeDiv p')).get(0) : undefined;
   }
 
   getTaskCreatedBy() {
     return element.all(by.css('app-detail .sapMOHBottomRow p.fd-action-bar__description')).get(0);
+  }
+
+  getUserMenu() {
+    return element(by.className('fd-user-menu__control'));
+  }
+
+  getUserMenuItem(index) {
+    return index > -1 ? element.all(by.css('.fd-user-menu .fd-menu__item')).get(index) : undefined;
   }
 }
