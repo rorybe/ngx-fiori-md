@@ -4,11 +4,11 @@ pipeline {
   tools {nodejs "recent node"}
 
   stages {    
-    stage('Checkout') {
-      steps {
-        git 'https://github.com/rorybe/ngx-fiori-md.git'
-      }
-    }        
+    // stage('Checkout') {
+    //   steps {
+    //     git 'https://github.com/rorybe/ngx-fiori-md.git'
+    //   }
+    // }        
     stage('Install') {
       steps {
         sh 'npm i'
