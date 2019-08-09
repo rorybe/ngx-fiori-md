@@ -4,11 +4,13 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "build": "ng build --prod",
     "test": "ng test --browsers=Chrome --watch=true",
     "build:test": "ng test --browsers=ChromeHeadlessNoSandbox --watch=false",
+    "build:test:coverage": "ng test --browsers=ChromeHeadlessNoSandbox --watch=false",
     "lint": "ng lint",
     "e2e": "ng e2e",
+    "analyze": "webpack-bundle-analyzer -m static dist/ng-fiori-md/stats.json",
     "compodoc": "npx compodoc -p src/tsconfig.app.json"
   },
   "private": true,
@@ -38,9 +40,9 @@
     "@angular/compiler-cli": "~7.2.0",
     "@angular/language-service": "~7.2.0",
     "@compodoc/compodoc": "^1.1.8",
-    "@types/node": "~8.9.4",
     "@types/jasmine": "~2.8.8",
     "@types/jasminewd2": "~2.0.3",
+    "@types/node": "~8.9.4",
     "codelyzer": "~4.5.0",
     "jasmine-core": "~2.99.1",
     "jasmine-spec-reporter": "~4.2.1",
@@ -52,6 +54,7 @@
     "protractor": "~5.4.0",
     "ts-node": "~7.0.0",
     "tslint": "~5.11.0",
-    "typescript": "~3.2.2"
+    "typescript": "~3.2.2",
+    "webpack-bundle-analyzer": "^3.4.1"
   }
 }
