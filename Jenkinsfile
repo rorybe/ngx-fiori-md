@@ -19,13 +19,17 @@ pipeline {
     }     
     stage('Build') {
       steps {
-        sh 'node ./node_modules/@angular/cli/bin/ng build --prod --build-optimizer=false --stats-json'
-        sh 'npm run analyze'
+        nodejs(nodeJSInstallationName: 'recent node') {
+          sh 'node ./node_modules/@angular/cli/bin/ng build --prod --build-optimizer=false --stats-json'
+          sh 'npm run analyze'
+        }  
       }
     }
     stage('Unit test') {
       steps {
-        sh 'npm run build:test -- --code-coverage'
+        nodejs(nodeJSInstallationName: 'recent node') {
+          sh 'npm run build:test -- --code-coverage'
+        }  
       }
     } 
   }    
