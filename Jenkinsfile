@@ -11,7 +11,10 @@ pipeline {
     // }        
     stage('Install') {
       steps {
-        sh 'npm i'
+        nodejs(nodeJSInstallationName: 'recent node') {
+          sh 'node -v'
+          sh 'npm i'
+        }
       }
     }     
     stage('Build') {
