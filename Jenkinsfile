@@ -53,13 +53,21 @@ pipeline {
         reportFiles: 'index.html',
         reportName: 'Code Coverage'
       ]
-        publishHTML target: [
+      publishHTML target: [
         allowMissing: false,
         alwaysLinkToLastBuild: false,
         keepAll: true,
         reportDir: './',
         reportFiles: 'report.html',
         reportName: 'Bundle Analyser'
+      ]
+      publishHTML target: [
+        allowMissing: false,
+        alwaysLinkToLastBuild: false,
+        keepAll: true,
+        reportDir: './e2e/screenshots',
+        reportFiles: 'index.html',
+        reportName: 'E2E Screenshots'
       ]
     }
   }
