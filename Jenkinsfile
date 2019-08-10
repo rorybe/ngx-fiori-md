@@ -4,6 +4,7 @@ pipeline {
   // tools {nodejs "recent node"}
 
   stages {    
+    // https://stackoverflow.com/questions/44928459/is-it-possible-to-rename-default-declarative-checkout-scm-step
     // stage('Checkout') {
     //   steps {
     //     git 'https://github.com/rorybe/ngx-fiori-md.git'
