@@ -26,13 +26,20 @@ pipeline {
         }  
       }
     }
-    stage('Unit test') {
+    stage('Unit tests') {
       steps {
         nodejs(nodeJSInstallationName: 'recent node') {
           sh 'npm run build:test -- --code-coverage'
         }  
       }
-    } 
+    }
+    stage('E2E tests') {
+      steps {
+        nodejs(nodeJSInstallationName: 'recent node') {
+          sh 'npm run e2e'
+        }  
+      }
+    }  
   }    
   post {
     success {
