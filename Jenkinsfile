@@ -38,7 +38,7 @@ pipeline {
         // sh 'Xvfb :0 -ac -screen 0 1024x768x24 &'
         nodejs(nodeJSInstallationName: 'recent node') {
           sh 'npm run e2e'
-          sh 'killall Xvfb'
+          // sh 'killall Xvfb'
         }  
       }
     }  
