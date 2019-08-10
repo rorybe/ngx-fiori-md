@@ -35,9 +35,9 @@ pipeline {
     }
     stage('E2E tests') {
       steps {
-        sh 'Xvfb :0 -ac -screen 0 1024x768x24 &'
+        // sh 'Xvfb :0 -ac -screen 0 1024x768x24 &'
         nodejs(nodeJSInstallationName: 'recent node') {
-          sh 'npm run e2e'
+          sh 'xvfb-run npm run e2e'
         }  
       }
     }  
