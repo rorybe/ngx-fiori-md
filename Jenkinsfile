@@ -56,6 +56,9 @@ pipeline {
             branch 'master'
           }
           steps {
+          nodejs(nodeJSInstallationName: 'recent node') {
+            sh 'echo "env.AWS_CRED_ID: ${env.AWS_CRED_ID}"'
+          }  
             withAWS(region:'ap-southeast-2',credentials:'${env.AWS_CRED_ID}') {
               s3Delete(bucket: '${AWS_BUCKET}', path:'**/*')
               s3Upload(bucket: '${AWS_BUCKET}', workingDir:'build', includePathPattern:'**/*');
