@@ -49,11 +49,11 @@ pipeline {
             branch 'master'
           }
           steps {
-            withAWS(region:'ap-southeast-2',credentials:'altAWS') {
+            withAWS(region: 'ap-southeast-2', credentials: 'altAWS') {
               // s3Delete(bucket: '${env.AWS_BUCKET}', path:'**/*')
-              s3Upload(bucket: '${env.AWS_BUCKET}', workingDir:'dist', includePathPattern:'**/*');
+              s3Upload(bucket: '${env.AWS_BUCKET}', workingDir: 'dist', includePathPattern: '**/*')
             }
-            mail(subject: 'Production Build', body: 'New Deployment to Production', to: 'rorber@outlook.com')
+            // mail(subject: 'Production Build', body: 'New Deployment to Production', to: 'rorber@outlook.com')
           }
         }
       }  
