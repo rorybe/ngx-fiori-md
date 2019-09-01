@@ -47,19 +47,21 @@ pipeline {
         sh 'npm run build --prod'
       }
     }  
-    stages('Deploy') {
-      stage('Production') {
-        when {
-          branch 'master'
-        }
-        steps {
-          withAWS(region:'ap-southeast-2',credentials:'${AWS_CRED_ID}') {
-            s3Delete(bucket: '${AWS_BUCKET}', path:'**/*')
-            s3Upload(bucket: '${AWS_BUCKET}', workingDir:'build', includePathPattern:'**/*');
+    stage('Deploy') {
+      parallel {
+        stage('Production') {
+          when {
+            branch 'master'
           }
-          mail(subject: 'Production Build', body: 'New Deployment to Production', to: 'rorber@outlook.com')
+          steps {
+            withAWS(region:'ap-southeast-2',credentials:'${AWS_CRED_ID}') {
+              s3Delete(bucket: '${AWS_BUCKET}', path:'**/*')
+              s3Upload(bucket: '${AWS_BUCKET}', workingDir:'build', includePathPattern:'**/*');
+            }
+            mail(subject: 'Production Build', body: 'New Deployment to Production', to: 'rorber@outlook.com')
+          }
         }
-      }
+      }  
     }
   }    
   post {
