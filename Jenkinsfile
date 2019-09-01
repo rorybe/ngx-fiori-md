@@ -49,8 +49,8 @@ pipeline {
             branch 'master'
           }
           steps {
-            withAWS(region:'ap-southeast-2',credentials:'AWS_CRED_ID') {
-              s3Delete(bucket: '${env.AWS_BUCKET}', path:'**/*')
+            withAWS(region:'ap-southeast-2',credentials:'altAWS') {
+              // s3Delete(bucket: '${env.AWS_BUCKET}', path:'**/*')
               s3Upload(bucket: '${env.AWS_BUCKET}', workingDir:'dist', includePathPattern:'**/*');
             }
             mail(subject: 'Production Build', body: 'New Deployment to Production', to: 'rorber@outlook.com')
