@@ -49,7 +49,7 @@ pipeline {
             branch 'master'
           }
           steps {
-            withAWS(region:'ap-southeast-2',credentials:'altAWS') {
+            withAWS(region:'ap-southeast-2',credentials:'AWS_CRED_ID') {
               s3Delete(bucket: '${env.AWS_BUCKET}', path:'**/*')
               s3Upload(bucket: '${env.AWS_BUCKET}', workingDir:'dist', includePathPattern:'**/*');
             }
