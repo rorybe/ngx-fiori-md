@@ -47,7 +47,7 @@ pipeline {
         sh 'npm run build --prod'
       }
     }  
-    stage('Deploy') {
+    stages('Deploy') {
       stage('Production') {
         when {
           branch 'master'
