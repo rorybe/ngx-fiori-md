@@ -41,7 +41,26 @@ pipeline {
           // sh 'killall Xvfb'
         }  
       }
+    }
+    stage('Create Build Artifacts') {
+      steps {
+        sh 'npm run build --prod'
+      }
     }  
+    stage('Deploy') {
+      stage('Production') {
+        when {
+          branch 'master'
+        }
+        steps {
+          withAWS(region:'ap-southeast-2',credentials:'${AWS_CRED_ID}') {
+            s3Delete(bucket: '${AWS_BUCKET}', path:'**/*')
+            s3Upload(bucket: '${AWS_BUCKET}', workingDir:'build', includePathPattern:'**/*');
+          }
+          mail(subject: 'Production Build', body: 'New Deployment to Production', to: 'rorber@outlook.com')
+        }
+      }
+    }
   }    
   post {
     success {
