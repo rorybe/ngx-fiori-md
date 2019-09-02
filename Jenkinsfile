@@ -50,7 +50,7 @@ pipeline {
           }
           steps {
             withAWS(region: 'ap-southeast-2', credentials: 'altAWS') {
-              s3Delete(bucket: 'ng-fiori-md', path:'**/*')
+              s3Delete(bucket: 'ng-fiori-md', path:'**')
               s3Upload(bucket: 'ng-fiori-md', workingDir: 'dist/ng-fiori-md', includePathPattern: '**/*')
             }
             mail(subject: 'Production Build', body: 'New Deployment to Production', to: 'rorber@outlook.com')
