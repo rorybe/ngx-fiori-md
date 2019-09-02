@@ -53,10 +53,9 @@ pipeline {
             branch 'master'
           }
           steps {
-            sh 'echo seii $AWS_BUCKET'
             withAWS(region: 'ap-southeast-2', credentials: 'altAWS') {
-              // s3Delete(bucket: '${env.AWS_BUCKET}', path:'**/*')
-              s3Upload(bucket: '${AWS_BUCKET}', workingDir: 'dist', includePathPattern: '**/*')
+              s3Delete(bucket: 'ng-fiori-md', path:'**/*')
+              s3Upload(bucket: 'ng-fiori-md', workingDir: 'dist', includePathPattern: '**/*')
             }
             // mail(subject: 'Production Build', body: 'New Deployment to Production', to: 'rorber@outlook.com')
           }
