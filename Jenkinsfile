@@ -49,6 +49,7 @@ pipeline {
             branch 'master'
           }
           steps {
+            sh 'echo seii $AWS_BUCKET'
             withAWS(region: 'ap-southeast-2', credentials: 'altAWS') {
               // s3Delete(bucket: '${env.AWS_BUCKET}', path:'**/*')
               s3Upload(bucket: '${env.AWS_BUCKET}', workingDir: 'dist', includePathPattern: '**/*')
