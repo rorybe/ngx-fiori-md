@@ -11,7 +11,6 @@ pipeline {
     //   }
     // }        
     stage('Install') {
-      when { branch 'admin' }
       steps {
         nodejs(nodeJSInstallationName: 'recent node') {
           sh 'node -v'
@@ -20,7 +19,6 @@ pipeline {
       }
     }     
     stage('Build') {
-      when { branch 'admin' }
       steps {
         nodejs(nodeJSInstallationName: 'recent node') {
           sh 'node ./node_modules/@angular/cli/bin/ng build --prod --build-optimizer=false --stats-json'
@@ -29,7 +27,6 @@ pipeline {
       }
     }
     stage('Unit tests') {
-      when { branch 'admin' }
       steps {
         nodejs(nodeJSInstallationName: 'recent node') {
           sh 'npm run build:test -- --code-coverage'
@@ -37,7 +34,6 @@ pipeline {
       }
     }
     stage('E2E tests') {
-      when { branch 'admin' }
       steps {
         // sh 'Xvfb :0 -ac -screen 0 1024x768x24 &'
         nodejs(nodeJSInstallationName: 'recent node') {
@@ -57,7 +53,7 @@ pipeline {
               s3Delete(bucket: 'ng-fiori-md', path:'**/*')
               s3Upload(bucket: 'ng-fiori-md', workingDir: 'dist', includePathPattern: '**/*')
             }
-            // mail(subject: 'Production Build', body: 'New Deployment to Production', to: 'rorber@outlook.com')
+            mail(subject: 'Production Build', body: 'New Deployment to Production', to: '${EMAIL}')
           }
         }
       }  
