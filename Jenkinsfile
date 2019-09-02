@@ -53,7 +53,7 @@ pipeline {
               s3Delete(bucket: 'ng-fiori-md', path:'**/*')
               s3Upload(bucket: 'ng-fiori-md', workingDir: 'dist', includePathPattern: '**/*')
             }
-            mail(subject: 'Production Build', body: 'New Deployment to Production', to: '${EMAIL}')
+            mail(subject: 'Production Build', body: 'New Deployment to Production', to: 'EMAIL')
           }
         }
       }  
