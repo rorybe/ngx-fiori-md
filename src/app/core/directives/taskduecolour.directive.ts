@@ -6,8 +6,7 @@ import { TaskStatus } from '../../models/TaskStatus';
 })
 export class TaskduecolourDirective implements AfterViewInit {
 
-  constructor(private el: ElementRef) {
-  }
+  constructor(private readonly el: ElementRef) { }
 
   ngAfterViewInit() {
     const dueStatus = this.el.nativeElement.innerHTML.trim();

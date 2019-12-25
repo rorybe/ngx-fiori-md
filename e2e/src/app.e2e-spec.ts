@@ -10,26 +10,21 @@ describe('App', () => {
     page.navigateTo();
   });
 
-  it('should display consistent task Created By name', (done) => {
+  it('should display consistent task Created By name', async () => {
     // @TODO FIND ALT SOLUTION TO HANDLE WEBSOCKETS
     browser.sleep(5000);
     const tile = page.getTile(2);
     const masterCreatedBy = page.getTileTaskCreatedBy(tile);
-    masterCreatedBy.click().then(() => {
-      const detailCreatedBy = page.getTaskCreatedBy();
-      expect(masterCreatedBy.getText()).toBe(detailCreatedBy.getText());
-      done();
-    });
+    await masterCreatedBy.click();
+    const detailCreatedBy = page.getTaskCreatedBy();
+    expect(masterCreatedBy.getText()).toBe(detailCreatedBy.getText());
   });
 
-  it('should change the language for all translatable texts', (done) => {
-    page.getUserMenu().click()
-      .then(() => page.getUserMenuItem(0).click())
-      .then(() => {
-        const menuTitle = element(by.className('fd-shellbar__title fd-product-menu__title'));
-        expect(menuTitle.getText()).toBe(jp.portal);
-        done();
-      });
+  it('should change the language for all translatable texts', async () => {
+    await page.getUserMenu().click();
+    await page.getUserMenuItem(0).click();
+    const menuTitle = element(by.className('fd-shellbar__title fd-product-menu__title'));
+    expect(menuTitle.getText()).toBe(jp.portal);
   });
 
   afterEach(async () => {

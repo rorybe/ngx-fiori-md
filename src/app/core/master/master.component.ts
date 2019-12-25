@@ -12,7 +12,7 @@ import { Task } from '../../models/Task.model';
 })
 export class MasterComponent implements OnDestroy {
 
-    loading$ = new BehaviorSubject<boolean>(true);
+    loading$ = new BehaviorSubject(true);
 
     showMaster$ = this.taskService.showMaster$;
 
@@ -31,8 +31,8 @@ export class MasterComponent implements OnDestroy {
     }));
 
     constructor(
-        private translate: TranslateService,
-        private taskService: TaskService
+        private readonly translate: TranslateService,
+        private readonly taskService: TaskService
     ) { }
 
     onSearchModelChange(): void {

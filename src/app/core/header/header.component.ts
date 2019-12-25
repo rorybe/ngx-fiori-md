@@ -13,8 +13,8 @@ export class HeaderComponent {
     searchTerm = '';
 
     constructor(
-        private translate: TranslateService,
-        private taskService: TaskService) {
+        private readonly translate: TranslateService,
+        private readonly taskService: TaskService) {
     }
 
     get translatedTexts() {
@@ -94,7 +94,7 @@ export class HeaderComponent {
     }
 
     toggleLanguage() {
-        this.translate.use(this.translate.lang === 'en' ? 'jp' : 'en');
+        this.translate.use(this.translate.lang === 'en' ? 'jp' : 'en').subscribe();
     }
 
     settingsCallback() {

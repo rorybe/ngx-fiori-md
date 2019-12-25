@@ -17,23 +17,22 @@ export class TaskService {
     loadCommentsTab = false;
     loadAttachmentsTab = false;
 
-    taskId$ = new BehaviorSubject<string>(null);
-    taskDetails$ = new Subject();
-    loading$ = new BehaviorSubject<boolean>(true);
-    activeTabs$ = new BehaviorSubject<ActiveTab>(new ActiveTab());
-    infoLoading$ = this.infoService.loading$;
-    commentLoading$ = this.commentService.loading$;
-    serviceFinalise: Subject<boolean> = new Subject();
+    readonly taskId$ = new BehaviorSubject('');
+    readonly taskDetails$ = new Subject<Task>();
+    readonly loading$ = new BehaviorSubject(true);
+    readonly activeTabs$ = new BehaviorSubject(new ActiveTab());
+    readonly infoLoading$ = this.infoService.loading$;
+    readonly commentLoading$ = this.commentService.loading$;
+    readonly serviceFinalise = new Subject<void>();
 
-    showMaster$ = new BehaviorSubject<boolean>(true);
+    readonly showMaster$ = new BehaviorSubject(true);
 
     constructor(
-        private db: AngularFirestore,
-        private infoService: InfoService,
-        private commentService: CommentService,
-        private attachmentService: AttachmentService
-    ) {
-    }
+        private readonly db: AngularFirestore,
+        private readonly infoService: InfoService,
+        private readonly commentService: CommentService,
+        private readonly attachmentService: AttachmentService
+    ) { }
 
     serviceArray = [this.infoService, this.commentService, this.attachmentService /* add services here */];
 
@@ -46,10 +45,10 @@ export class TaskService {
         this.db.doc(`taskheaders/${taskId}`).valueChanges()
             .pipe(takeUntil(this.serviceFinalise))
             .subscribe((taskDetails: Task) => {
+                this.taskDetails$.next(taskDetails);
+                this.loading$.next(false);
                 if (taskDetails) {
                     this.updateDisabledTabs(taskDetails.taskDefinitionName);
-                    this.taskDetails$.next(taskDetails);
-                    this.loading$.next(false);
                 }
             });
 
@@ -86,7 +85,7 @@ export class TaskService {
     }
 
     unsubscribeServices(): void {
-        this.serviceFinalise.next(true);
+        this.serviceFinalise.next();
         this.serviceFinalise.complete();
         this.serviceArray.forEach(svc => svc.unsubscribeService());
     }

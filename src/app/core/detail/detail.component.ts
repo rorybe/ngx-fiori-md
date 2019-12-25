@@ -2,10 +2,10 @@ import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { TaskService } from '../services/task.service';
 import { Subject, BehaviorSubject, combineLatest } from 'rxjs';
 import { TranslateService } from '../services/translate.service';
-import { takeUntil, map } from 'rxjs/operators';
+import { takeUntil, tap, pluck } from 'rxjs/operators';
 import { TabId } from '../../models/TabId.model';
-import { Task } from '../../models/Task.model';
 import { ActivatedRoute, Router } from '@angular/router';
+// import { TabListComponent } from 'fundamental-ngx/lib/tabs/tab-list.component';
 
 /**
  * Detail view component
@@ -18,37 +18,35 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class DetailComponent implements OnInit, OnDestroy {
     @ViewChild('tabList') tabList;
 
-    task$ = this.taskService.taskDetails$;
-    task: Task;
     /**
      * Detail view loading status
      */
-    loading$ = this.taskService.loading$;
+    readonly loading$ = this.taskService.loading$;
     /**
      * Information tab loading status
      */
-    infoLoading$ = this.taskService.infoLoading$;
+    readonly infoLoading$ = this.taskService.infoLoading$;
     /**
      * Comment tab loading status
      */
-    commentLoading$ = this.taskService.commentLoading$;
+    readonly commentLoading$ = this.taskService.commentLoading$;
     /**
      * Active tabs in the context of the selected task
      */
-    activeTabs$ = this.taskService.activeTabs$;
+    readonly activeTabs$ = this.taskService.activeTabs$;
     /**
      * Keeps track of the index of the selected tab
      */
-    tabIndex$ = new BehaviorSubject<number>(null);
-    finalise$: Subject<boolean> = new Subject();
+    readonly tabIndex$ = new BehaviorSubject(0);
+    readonly finalise$ = new Subject<void>();
     /**
      * Show / hide master (used in responsive views)
      */
-    showMaster$ = this.taskService.showMaster$;
+    readonly showMaster$ = this.taskService.showMaster$;
     /**
      * Not found flag to show / hide not generic found page
      */
-    showNotFound$ = new BehaviorSubject<boolean>(false);
+    showNotFound$ = new BehaviorSubject(false);
     /**
      * Lazy comments tab loading indicator
      */
@@ -58,45 +56,47 @@ export class DetailComponent implements OnInit, OnDestroy {
      */
     loadAttachmentsTab = false;
 
+    taskDetail$ = this.taskService.taskDetails$.pipe(
+        takeUntil(this.finalise$),
+        tap(taskDetail => {
+            if (!taskDetail) {
+                return this.showNotFound$.next(true);
+            }
+        })
+    );
+
     constructor(
-        private router: Router,
-        private taskService: TaskService,
-        private translateService: TranslateService,
-        private route: ActivatedRoute
+        private readonly router: Router,
+        private readonly taskService: TaskService,
+        private readonly translateService: TranslateService,
+        private readonly route: ActivatedRoute
     ) { }
 
     ngOnInit(): void {
         // If detail/:taskId route is matched, set the current
         // task ID (navigate to detail page by
         // hiding the master in responsive views)
-        this.route.paramMap.pipe(map(p => p.get('taskId')))
-            .pipe(takeUntil(this.finalise$))
-            .subscribe(taskId => {
-                if (taskId) {
-                    this.taskService.taskId$.next(taskId);
-                    this.showNotFound$.next(false);
-                } else {
-                    this.task = { taskDefinitionName: ('Not Found') } as any;
-                    this.showNotFound$.next(true);
-                }
-                this.taskService.showMaster$.next(false);
-            });
+        this.route.params.pipe(
+            takeUntil(this.finalise$),
+            pluck('taskId'),
+        ).subscribe((taskId: string) => {
+            if (taskId) {
+                this.taskService.taskId$.next(taskId);
+                this.showNotFound$.next(false);
+            } else {
+                this.showNotFound$.next(true);
+            }
+            this.taskService.showMaster$.next(false);
+        });
 
         this.onTabChange();
 
         // Once we have a task ID and/or a selected tab,
         // load the task details
-        combineLatest(this.taskService.taskId$, this.tabIndex$).pipe(
-            takeUntil(this.finalise$))
-            .subscribe(([tId, tInd]) => {
-                this.taskService.load(tId, tInd);
-            });
-
-        this.taskService.taskDetails$.pipe(takeUntil(this.finalise$)).subscribe(taskDetail => {
-            if (taskDetail) {
-                return this.task = taskDetail as Task;
-            }
-            this.task = undefined;
+        combineLatest([this.taskService.taskId$, this.tabIndex$]).pipe(
+            takeUntil(this.finalise$)
+        ).subscribe(([tId, tInd]) => {
+            this.taskService.load(tId, tInd);
         });
     }
 
@@ -139,7 +139,7 @@ export class DetailComponent implements OnInit, OnDestroy {
     }
 
     ngOnDestroy(): void {
-        this.finalise$.next(true);
+        this.finalise$.next();
         this.finalise$.complete();
     }
 

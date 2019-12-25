@@ -11,8 +11,7 @@ describe('MasterComponent', () => {
         TestBed.configureTestingModule({
             imports: [TestingModule],
             declarations: [MasterComponent]
-        })
-            .compileComponents();
+        }).compileComponents();
     }));
 
     beforeEach(() => {
@@ -35,15 +34,14 @@ describe('MasterComponent', () => {
 
     it('should sort tasks descending by deadline date on first sort', () => {
         component.taskList = taskList as any;
-        fixture.whenStable().then(() => {
-            component.onSort();
-            expect(component.sorted).toBeTruthy();
-            expect(component.taskList[0].completionDeadLine.seconds)
-                .toBeLessThan(component.taskList[1].completionDeadLine.seconds);
-            expect(component.taskList[1].completionDeadLine.seconds)
-                .toBeLessThan(component.taskList[2].completionDeadLine.seconds);
-            expect(component.taskList[2].completionDeadLine.seconds)
-                .toBeLessThan(component.taskList[3].completionDeadLine.seconds);
-        });
+        fixture.detectChanges();
+        component.onSort();
+        expect(component.sorted).toBeTruthy();
+        expect(component.taskList[0].completionDeadLine.seconds)
+            .toBeLessThan(component.taskList[1].completionDeadLine.seconds);
+        expect(component.taskList[1].completionDeadLine.seconds)
+            .toBeLessThan(component.taskList[2].completionDeadLine.seconds);
+        expect(component.taskList[2].completionDeadLine.seconds)
+            .toBeLessThan(component.taskList[3].completionDeadLine.seconds);
     });
 });

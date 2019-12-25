@@ -17,7 +17,15 @@ pipeline {
           sh 'npm i'
         }
       }
-    }     
+    }    
+    stage('Lint') {
+      steps {
+        nodejs(nodeJSInstallationName: 'recent node') {
+          sh 'node -v'
+          sh 'npm run lint'
+        }
+      }
+    }  
     stage('Build') {
       steps {
         nodejs(nodeJSInstallationName: 'recent node') {
@@ -51,7 +59,7 @@ pipeline {
           steps {
             withAWS(region: 'ap-southeast-2', credentials: 'altAWS') {
               s3Delete(bucket: 'ng-fiori-md', path:'**')
-              s3Upload(bucket: 'ng-fiori-md', workingDir: 'dist/ng-fiori-md', includePathPattern: '**/*')
+              s3Upload(bucket: 'ng-fiori-md', workingDir: 'dist/ng-fiori-md', includePathPattern: '**/*', acl: 'PublicRead')
             }
             mail(subject: 'Production Build', body: 'New Deployment to Production', to: 'rorber@outlook.com')
           }

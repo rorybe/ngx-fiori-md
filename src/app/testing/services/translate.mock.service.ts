@@ -1,12 +1,12 @@
-import { of, BehaviorSubject, Subject } from 'rxjs';
+import { of, Subject, Observable } from 'rxjs';
 
 export class TranslateMockService {
   i18n: any = {};
   lang = '';
-  serviceFinalise: Subject<boolean> = new Subject();
+  serviceFinalise = new Subject<void>();
 
-  use(lang: string) {
-    return new Promise(resolve => resolve({}));
+  use(): Observable<{ [key: string]: string }> {
+    return of();
   }
 
   unsubscribeService() { }

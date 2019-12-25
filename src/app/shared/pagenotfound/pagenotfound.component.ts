@@ -8,7 +8,7 @@ import { TranslateService } from '../../core/services/translate.service';
 })
 export class PageNotFoundComponent {
 
-    constructor(private translate: TranslateService) { }
+    constructor(private readonly translate: TranslateService) { }
 
     get translatedTexts() {
         return this.translate.i18n;

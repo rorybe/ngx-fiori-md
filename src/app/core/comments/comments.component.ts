@@ -12,12 +12,13 @@ import { CommentService } from '../services/comment.service';
 })
 export class CommentsComponent {
 
-  loading$ = this.commentService.loading$;
-  comments$ = this.commentService.comments$;
+  readonly loading$ = this.commentService.loading$;
+  readonly comments$ = this.commentService.comments$;
 
   constructor(
-    private translateService: TranslateService,
-    private commentService: CommentService) { }
+    private readonly translateService: TranslateService,
+    private readonly commentService: CommentService
+  ) { }
 
   /**
    * Returns translatable texts for current language (default English)

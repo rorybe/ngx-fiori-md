@@ -21,9 +21,9 @@ module.exports = function (config) {
       fixWebpackSourcePaths: true
     },
     captureTimeout: 210000,
-    browserDisconnectTolerance: 3, 
-    browserDisconnectTimeout : 210000,
-    browserNoActivityTimeout : 210000,
+    browserDisconnectTolerance: 3,
+    browserDisconnectTimeout: 210000,
+    browserNoActivityTimeout: 210000,
     reporters: ['progress', 'kjhtml'],
     port: 9876,
     colors: true,
