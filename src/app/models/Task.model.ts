@@ -14,5 +14,5 @@ export interface Task {
     taskDefinitionName: TaskName;
     taskTitle: string;
     user: string;
-    selected: boolean | null;
+    selected?: boolean;
 }

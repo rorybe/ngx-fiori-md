@@ -8,12 +8,12 @@ import { takeUntil } from 'rxjs/operators';
 })
 export class CommentService {
 
-    currentTaskId$ = new BehaviorSubject<string>(null);
-    comments$ = new BehaviorSubject<any>(undefined);
-    loading$ = new BehaviorSubject<boolean>(true);
-    serviceFinalise: Subject<boolean> = new Subject();
+    readonly currentTaskId$ = new BehaviorSubject('');
+    readonly comments$ = new BehaviorSubject(undefined);
+    readonly loading$ = new BehaviorSubject(true);
+    readonly serviceFinalise = new Subject<void>();
 
-    constructor(private db: AngularFirestore) { }
+    constructor(private readonly db: AngularFirestore) { }
 
     load(taskId: string): void {
         if (this.currentTaskId$.value === taskId) {
@@ -38,7 +38,7 @@ export class CommentService {
     }
 
     unsubscribeService(): void {
-        this.serviceFinalise.next(true);
+        this.serviceFinalise.next();
         this.serviceFinalise.complete();
     }
 

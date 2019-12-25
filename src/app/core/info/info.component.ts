@@ -11,13 +11,11 @@ import { InfoService } from '../services/info.service';
 export class InfoComponent {
 
   Object = Object;
-  loading$ = new BehaviorSubject<boolean>(true);
-  tableRows;
+  loading$ = new BehaviorSubject(true);
   task: Task;
-  finalise$: Subject<boolean> = new Subject();
   info$ = this.infoService.info$;
   tableItems$ = this.infoService.PurchaseOrderItems$;
 
-  constructor(private infoService: InfoService) { }
+  constructor(private readonly infoService: InfoService) { }
 
 }

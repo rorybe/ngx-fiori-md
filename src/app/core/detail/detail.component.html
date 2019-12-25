@@ -1,20 +1,18 @@
 <fd-panel [ngClass]="(showMaster$ | async) ? 'hide' : ''">
     <fd-panel-filters>
-        <div class="barLeft">
-            <ng-container *ngIf="task">
+        <ng-container *ngIf="taskDetail$ | async as taskDetail">
+            <div class="barLeft">
                 <button fd-button [fdType]="'standard'" [options]="'light'" [glyph]="'nav-back'" [size]="'l'"
                     (click)="onNavBack()">
                 </button>
-            </ng-container>
-        </div>
-        <div class="barMiddle">
-            <ng-container *ngIf="task">
-                <span>{{task.taskDefinitionName}} </span>
-                <fd-inline-help *ngIf="task.taskDefinitionName" [position]="'bottom-right'">
-                    {{task.taskDefinitionName}}
+            </div>
+            <div class="barMiddle">
+                <span>{{taskDetail.taskDefinitionName}} </span>
+                <fd-inline-help *ngIf="taskDetail.taskDefinitionName" [position]="'bottom-right'">
+                    {{taskDetail.taskDefinitionName}}
                 </fd-inline-help>
-            </ng-container>
-        </div>
+            </div>
+        </ng-container>
         <div class="barRight"></div>
     </fd-panel-filters>
     <fd-panel-body class="panelBody">
@@ -23,31 +21,31 @@
         </div>
         <ng-template #notFound>
             <fd-loading-spinner *ngIf="loading$ | async" [loading]="true"></fd-loading-spinner>
-            <fd-action-bar *ngIf="task">
+            <fd-action-bar *ngIf="taskDetail$ | async as taskDetail">
                 <fd-action-bar-header>
-                    <fd-action-bar-title>{{task.taskTitle}}</fd-action-bar-title>
+                    <fd-action-bar-title>{{taskDetail.taskTitle}}</fd-action-bar-title>
                     <fd-action-bar-description>
                         <div class="sapMOHBottomRow">
                             <fd-action-bar-description class="sapMOHAttrRow">
-                                {{task.createdByName}}
+                                {{taskDetail.createdByName}}
                             </fd-action-bar-description>
                             <fd-action-bar-description class="sapMOHAttrRow">
                                 <!-- <ng-container i18n="@@dueOn">Due on</ng-container> -->
                                 <span>{{translatedTexts?.dueOn}} </span>
                                 <span>
-                                    {{(task.completionDeadLine)?.seconds | secToMs | date:'medium'}}
+                                    {{(taskDetail.completionDeadLine)?.seconds | secToMs | date:'medium'}}
                                 </span>
                             </fd-action-bar-description>
                             <fd-action-bar-description class="sapMOHAttrRow">
                                 <!-- <ng-container i18n="@@createdOn">Created on</ng-container> -->
                                 <span>{{translatedTexts?.createdOn}} </span>
-                                {{(task.createdOn)?.seconds | secToMs | date:'medium'}}
+                                {{(taskDetail.createdOn)?.seconds | secToMs | date:'medium'}}
                             </fd-action-bar-description>
                         </div>
                     </fd-action-bar-description>
                 </fd-action-bar-header>
                 <fd-action-bar-actions>
-                    <span>{{task.user}} </span>
+                    <span>{{taskDetail.user}} </span>
                     <fd-inline-help [position]="'bottom-left'">
                         <fd-label [isStatusLabel]="true" [statusIcon]="'busy'">Busy</fd-label>
                     </fd-inline-help>

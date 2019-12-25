@@ -5,7 +5,9 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { Routes, ActivatedRoute } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import { TaskService } from '../services/task.service';
-import { PageNotFoundComponent } from 'src/app/shared/pagenotfound/pagenotfound.component';
+import { PageNotFoundComponent } from '../../shared/pagenotfound/pagenotfound.component';
+import { TabListMockComponent } from '../../testing/components/tab-list.mock.component';
+import { TabListComponent } from 'fundamental-ngx/lib/tabs/tab-list.component';
 
 const routes: Routes = [
   { path: ':taskId', component: DetailComponent }
@@ -24,18 +26,15 @@ describe('DetailComponent', () => {
         TestingModule
       ],
       declarations: [DetailComponent, PageNotFoundComponent]
-    })
-      .compileComponents();
-  }));
+    }).compileComponents();
 
-  beforeEach(() => {
     fixture = TestBed.createComponent(DetailComponent);
     component = fixture.componentInstance;
     activatedRoute = TestBed.get(ActivatedRoute);
     taskService = TestBed.get(TaskService);
     activatedRoute.params = new BehaviorSubject({});
     fixture.detectChanges();
-  });
+  }));
 
   it('should create', () => {
     expect(component).toBeTruthy();
@@ -58,27 +57,23 @@ describe('DetailComponent', () => {
   });
 
   it('should select the first tab on load when an invalid tab ID is supplied', () => {
-    spyOn(component, 'onTabChange').and.callThrough();
-    fixture.whenStable().then(() => {
-      component.tabList.selected.id = 'invalidTab';
-      component.onTabChange();
-      let tabIndex;
-      const sub = component.tabIndex$.subscribe(t => tabIndex = t);
-      sub.unsubscribe();
-      expect(tabIndex).toBe(0);
-    });
+    component.tabList = TestBed.createComponent(TabListMockComponent).componentInstance as TabListComponent;
+    component.tabList.selected = { id: 'invalidTab' } as any;
+    component.onTabChange();
+    let tabIndex;
+    const sub = component.tabIndex$.subscribe(t => tabIndex = t);
+    sub.unsubscribe();
+    expect(tabIndex).toBe(0);
   });
 
   it('should select the first tab on load when an undefined tab ID is supplied', () => {
-    spyOn(component, 'onTabChange').and.callThrough();
-    fixture.whenStable().then(() => {
-      component.tabList.selected.id = undefined;
-      component.onTabChange();
-      let tabIndex;
-      const sub = component.tabIndex$.subscribe(t => tabIndex = t);
-      sub.unsubscribe();
-      expect(tabIndex).toBe(0);
-    });
+    component.tabList = TestBed.createComponent(TabListMockComponent).componentInstance as any;
+    component.tabList.selected = { id: 'invalidTab' };
+    component.onTabChange();
+    let tabIndex;
+    const sub = component.tabIndex$.subscribe(t => tabIndex = t);
+    sub.unsubscribe();
+    expect(tabIndex).toBe(0);
   });
 
   it('should call to load the current task\'s details on load when a task ID is supplied in the route URL', () => {

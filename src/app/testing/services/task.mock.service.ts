@@ -5,15 +5,15 @@ export class TaskMockService {
 
   loadCommentsTab = false;
   loadAttachmentsTab = false;
-  taskId$ = new BehaviorSubject<string>(null);
+  taskId$ = new BehaviorSubject(null);
   taskDetails$ = new Subject();
-  loading$ = new BehaviorSubject<boolean>(true);
-  activeTabs$ = new BehaviorSubject<ActiveTab>(new ActiveTab());
+  loading$ = new BehaviorSubject(true);
+  activeTabs$ = new BehaviorSubject(new ActiveTab());
   infoLoading$ = of(); // this.infoService.loading$;
   commentLoading$ = of(); // this.commentService.loading$;
-  serviceFinalise: Subject<boolean> = new Subject();
+  serviceFinalise = new Subject<void>();
 
-  showMaster$ = new BehaviorSubject<boolean>(true);
+  showMaster$ = new BehaviorSubject(true);
 
   // constructor(
   //     private db: AngularFirestore,

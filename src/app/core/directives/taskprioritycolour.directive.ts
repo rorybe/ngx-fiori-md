@@ -8,8 +8,7 @@ export class TaskprioritycolourDirective implements AfterViewInit {
   @Input('appTaskprioritycolour')
   priority: string;
 
-  constructor(private el: ElementRef) {
-  }
+  constructor(private readonly el: ElementRef) { }
 
   ngAfterViewInit() {
     const styles = this.el.nativeElement.style;

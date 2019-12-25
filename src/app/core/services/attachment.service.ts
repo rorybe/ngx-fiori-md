@@ -6,15 +6,12 @@ import { Subject } from 'rxjs';
 })
 export class AttachmentService {
 
-    serviceFinalise: Subject<boolean> = new Subject();
+    serviceFinalise = new Subject<void>();
 
-    constructor() { }
-
-    load() {
-    }
+    load() { }
 
     unsubscribeService(): void {
-        this.serviceFinalise.next(true);
+        this.serviceFinalise.next();
         this.serviceFinalise.complete();
     }
 }
