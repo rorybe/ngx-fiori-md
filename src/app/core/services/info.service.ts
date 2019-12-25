@@ -9,7 +9,7 @@ import { Task } from 'src/app/models/Task.model';
 })
 export class InfoService {
 
-  readonly currentTaskId$ = new BehaviorSubject('')
+  readonly currentTaskId$ = new BehaviorSubject('');
   readonly info$ = new BehaviorSubject<Task>(null);
   readonly loading$ = new BehaviorSubject(true);
   readonly serviceFinalise$ = new Subject<void>();
